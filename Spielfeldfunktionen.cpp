@@ -49,16 +49,16 @@ void spielfeldrotierenUhr(string spielfeld[fg][fg]){
     for (int i = 0; i < fg; i++){
         for (int j = 0; j < fg; j++){
             if (temparray[i][j] == "XX" || temparray[i][j] == "=="){
-                if (i == 0 && j < fg - 1){              // auﬂen oben nach
+                if (i == 0 && j < fg - 1){              // au√üen oben nach rechts
                     spielfeld[i][j + 1] = temparray[i][j];
                 }
-                else if (j == fg - 1 && i < fg - 1){    // auﬂen rechts nach unten
+                else if (j == fg - 1 && i < fg - 1){    // au√üen rechts nach unten
                     spielfeld[i + 1][j] = temparray[i][j];
                 }
-                else if (i == fg - 1 && j > 0){         // auﬂen unten nach links
+                else if (i == fg - 1 && j > 0){         // au√üen unten nach links
                     spielfeld[i][j - 1] = temparray[i][j];
                 }
-                else if (j == 0 && i > 0){              // auﬂen links nach oben
+                else if (j == 0 && i > 0){              // au√üen links nach oben
                     spielfeld[i - 1][j] = temparray[i][j];
                 }
 
@@ -115,16 +115,16 @@ void spielfeldrotierenGegenUhr(string spielfeld[fg][fg]){
     for (int i = 0; i < fg; i++){
         for (int j = 0; j < fg; j++){
             if (temparray[i][j] == "XX" || temparray[i][j] == "=="){
-                if (i == 0 && j < fg && j > 0){              // auﬂen oben nach links
+                if (i == 0 && j < fg && j > 0){              // au√üen oben nach links
                     spielfeld[i][j - 1] = temparray[i][j];
                 }
-                else if (j == fg - 1 && i < fg && i > 0){    // auﬂen rechts nach oben
+                else if (j == fg - 1 && i < fg && i > 0){    // au√üen rechts nach oben
                     spielfeld[i - 1][j] = temparray[i][j];
                 }
-                else if (i == fg - 1 && j >= 0 && j < fg - 1){         // auﬂen unten nach rechts
+                else if (i == fg - 1 && j >= 0 && j < fg - 1){         // au√üen unten nach rechts
                     spielfeld[i][j + 1] = temparray[i][j];
                 }
-                else if (j == 0 && i >= 0 && i < fg - 1){              // auﬂen links nach unten
+                else if (j == 0 && i >= 0 && i < fg - 1){              // au√üen links nach unten
                     spielfeld[i + 1][j] = temparray[i][j];
                 }
 
@@ -270,7 +270,7 @@ void SpielzugComputerL(string spielfeld[fg][fg]){
                 }
             }
         }
-// Zuf‰lliger Spielzug
+// Zuf√§lliger Spielzug
     int i;
     int j;
     bool freiesFeld;

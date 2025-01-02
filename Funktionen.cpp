@@ -55,7 +55,11 @@ void ColorCout(int color, string text){
    SetConsoleTextAttribute(handle, 7);
 }
 
-void checkSpielzug(char& feld){
-    
+void checkSpielzug(const string& feld){
+    if ( feld == "XX" || feld == "--" ){
+        cout << "Spielzug nicht moeglich, bitte erneut versuchen" << endl;
+        cin.clear();
+        cin.sync();
+    }
 }
 

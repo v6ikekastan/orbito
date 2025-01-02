@@ -1,5 +1,6 @@
 #include "Funktionen.h"
 #include "Spielfeldfunktionen.h"
+#include "Fehleingaben.h"
 
 #include <iostream>
 #include <string>
@@ -28,9 +29,9 @@ highscoreEintragen(highscoreAbrufen() + 1);
 string spieler1;
 string spieler2;
 cout << "Name von Spieler 1 eingeben: ";
-cin >> spieler1;
+checkEingabe(spieler1); //Funktion wird aufgerufen
 cout << "Name von Spieler 2 eingeben: ";
-cin >> spieler2;
+checkEingabe(spieler2); //Funktion wird aufgerufen
 if (spieler2 == "Computer" || spieler2 == "computer"){
     cout << "test" << endl;
 

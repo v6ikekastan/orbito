@@ -92,17 +92,16 @@ void checkEingabeSpielzug(int& position) {
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ung黮tige Eingabe
         } else {
             break; // g黮tige Eingabe, Schleife verlassen
-        }
     }
 }
 
 
-void checkSpielzug(const string& feld){
-    
-    if ( feld == "XX" || feld == "--" ){
+bool checkSpielzug(const string& spielfeld, int positiony, int positionx){
+    if ( spielfeld[positiony][positionx] == "XX" || spielfeld[positiony][positionx] == "--" ){
         cout << "Spielzug nicht moeglich, bitte erneut versuchen." << endl;
-        cin.clear();
-        cin.sync();
+       return false;
+    } else {
+        return true;
     }
 }
 

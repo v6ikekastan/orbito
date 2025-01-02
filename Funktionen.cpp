@@ -86,7 +86,7 @@ void checkEingabeSpielzug(int& position) {
         cin >> position;
         if (position == "save" || position == "Save" || position == "SAVE") {
         SpielstandSpeichern(spieler1, spieler2, spielfeldarray[fg][fg], checksieg, winstreak, Spieler1istDran);
-        } if (cin.fail() || position<0 || position>3) { // prüft ob Benutzer einen Wert eingegeben hat, der nicht zum Datentyp von variable passt
+        } else if (cin.fail() || position<0 || position>3) { // prüft ob Benutzer einen Wert eingegeben hat, der nicht zum Datentyp von variable passt
             cout << "Ungültige Eingabe, bitte erneut versuchen." << endl;
             cin.clear();   // löscht Fehlerinformation
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ung黮tige Eingabe
@@ -98,6 +98,7 @@ void checkEingabeSpielzug(int& position) {
 
 
 void checkSpielzug(const string& feld){
+    
     if ( feld == "XX" || feld == "--" ){
         cout << "Spielzug nicht moeglich, bitte erneut versuchen." << endl;
         cin.clear();

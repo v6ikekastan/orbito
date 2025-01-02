@@ -19,7 +19,7 @@ int highscoreAbrufen(){
         }
 
     else {
-        cout << "Fehler beim öffnen der Datei 'highscore.txt'." << endl;
+        cout << "Fehler beim Ã¶ffnen der Datei 'highscore.txt'." << endl;
     }
 
     return zahl;
@@ -53,5 +53,9 @@ void ColorCout(int color, string text){
    SetConsoleTextAttribute(handle, color);
    cout << text;
    SetConsoleTextAttribute(handle, 7);
+}
+
+void checkSpielzug(char& feld){
+    
 }
 

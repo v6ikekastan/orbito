@@ -32,6 +32,6 @@ void checkEingabeSpielzug(int& position);
 * @brief prüfen ob Spielzug vom Benutzer möglich ist
 * @param [in] feld das vom Benutzer ausgewählt wird
 **/
-void checkSpielzug(char& feld) 
+void checkSpielzug(const string& feld); //const weil es nur Spielfeld liest
 
 #endif //FUNKTIONEN_H

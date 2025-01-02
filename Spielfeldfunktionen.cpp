@@ -1,5 +1,6 @@
 #include "Spielfeldfunktionen.h"
 #include "Funktionen.h"
+#include "Fehleingaben.h"
 #include <string>
 #include <iostream>
 using namespace std;
@@ -204,7 +205,8 @@ void spielzug1(string spielfeld[fg][fg], string spieler1){
     int positionx;
 
     cout << spieler1 << " (XX) ist am Zug. Zeile [space] Spalte eingeben." << endl;
-    cin >> positiony >> positionx;
+    checkEingabeSpielzug(positiony); // Funktion wird aufgerufen
+    checkEingabeSpielzug(positionx);
 
     spielfeld[positiony][positionx] = "XX";
 }
@@ -219,7 +221,8 @@ void spielzug2(string spielfeld[fg][fg], string spieler2){
         int positionx;
 
         cout << spieler2 << " (==) ist am Zug. Zeile [space] Spalte eingeben." << endl;
-        cin >> positiony >> positionx;
+        checkEingabeSpielzug(positiony); // Funktion wird aufgerufen
+        checkEingabeSpielzug(positionx);
 
         spielfeld[positiony][positionx] = "==";
     }

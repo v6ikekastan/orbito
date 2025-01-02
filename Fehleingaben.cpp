@@ -5,17 +5,17 @@
 
 using namespace std;
 
-void checkEingabe(string& name) {
+void checkEingabe(string& spielername) {
     while (true) {
-        cin >> name;
+        cin >> spielername;
         bool valid = true;
-        for (char c : name) {
+        for (char c : spielername) {
             if (!isalpha(c)) { // prüft ob jedes Zeichen ein Buchstabe ist
                 valid = false;
                 break;
             }
         }
-        if (!valid || name.empty() || cin.fail()) {
+        if (!valid || spielername.empty() || cin.fail()) {
             cout << "Ungültige Eingabe, bitte erneut versuchen." << endl;
             cin.clear();   // löscht Fehlerinformation
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ungültige Eingabe

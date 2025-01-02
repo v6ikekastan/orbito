@@ -5,6 +5,9 @@
 #include <string>
 #include <cmath>
 #include <windows.h>
+#include <limits>
+#include <cctype>
+
 using namespace std;
 
 

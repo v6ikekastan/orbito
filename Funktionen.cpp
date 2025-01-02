@@ -10,8 +10,6 @@
 
 using namespace std;
 
-
-
 int highscoreAbrufen(){
     ifstream dateiScore("highscore.txt");
     int zahl;
@@ -29,6 +27,7 @@ int highscoreAbrufen(){
 
 }
 
+
 int highscoreVergleichen(int untilscore, int scorenow){
     cout << "highscore Vergleich" << endl;
     int ahighscore = fmax(untilscore, scorenow);
@@ -36,6 +35,7 @@ int highscoreVergleichen(int untilscore, int scorenow){
     return ahighscore;
 
 }
+
 
 void highscoreEintragen(int nhighscore){
     ofstream dateiScore("highscore.txt");
@@ -51,6 +51,7 @@ void highscoreEintragen(int nhighscore){
     }
 }
 
+
 void ColorCout(int color, string text){
    HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
    SetConsoleTextAttribute(handle, color);
@@ -58,9 +59,47 @@ void ColorCout(int color, string text){
    SetConsoleTextAttribute(handle, 7);
 }
 
+
+void checkEingabe(string& spielername) {
+    while (true) {
+        cin >> spielername;
+        bool valid = true;
+        for (char c : spielername) {
+            if (!isalpha(c)) { // prüft ob jedes Zeichen ein Buchstabe ist
+                valid = false;
+                break;
+            }
+        }
+        if (!valid || spielername.empty() || cin.fail()) {
+            cout << "Ungültige Eingabe, bitte erneut versuchen." << endl;
+            cin.clear();   // löscht Fehlerinformation
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ungültige Eingabe
+        } else {
+            break; // gtige Eingabe, Schleife verlassen
+        }
+    }
+}
+
+
+void checkEingabeSpielzug(int& position) {
+    while (true){
+        cin >> position;
+        if (position == "save" || position == "Save" || position == "SAVE") {
+        SpielstandSpeichern(spieler1, spieler2, spielfeldarray[fg][fg], checksieg, winstreak, Spieler1istDran);
+        } if (cin.fail() || position<0 || position>3) { // prüft ob Benutzer einen Wert eingegeben hat, der nicht zum Datentyp von variable passt
+            cout << "Ungültige Eingabe, bitte erneut versuchen." << endl;
+            cin.clear();   // löscht Fehlerinformation
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ung黮tige Eingabe
+        } else {
+            break; // g黮tige Eingabe, Schleife verlassen
+        }
+    }
+}
+
+
 void checkSpielzug(const string& feld){
     if ( feld == "XX" || feld == "--" ){
-        cout << "Spielzug nicht moeglich, bitte erneut versuchen" << endl;
+        cout << "Spielzug nicht moeglich, bitte erneut versuchen." << endl;
         cin.clear();
         cin.sync();
     }

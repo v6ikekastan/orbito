@@ -1,7 +1,9 @@
 #include "Spielfeldfunktionen.h"
 #include "Funktionen.h"
+
 #include <string>
 #include <iostream>
+
 using namespace std;
 
 void spielfelderstellen(string spielfeld[fg][fg]){
@@ -156,7 +158,7 @@ void spielfeldrotierenGegenUhr(string spielfeld[fg][fg]){
     spielfelderstellen(spielfeld);
 }
 
-int checkSiegquer(string spielfeld[fg][fg]){
+int checkSiegquer(const string spielfeld[fg][fg]){
     for (int i = 0; i < fg; i++){
         for (int j = 0; j < fg; j++){
             if (spielfeld[fg][fg] == "==" && spielfeld[i][j] == spielfeld[i][j + 1] && spielfeld[i][j + 2] == spielfeld[i][j + 3] && spielfeld[i][j] == spielfeld[i][j + 1] && spielfeld[i][j] == "XX"){
@@ -172,15 +174,15 @@ int checkSiegquer(string spielfeld[fg][fg]){
         }
 }
 
-int checkSiegvert(string spielfeld[fg][fg]){
+int checkSiegvert(const string spielfeld[fg][fg]){
 
 }
 
-int checkSiegdiagonal(string spielfeld[fg][fg]){
+int checkSiegdiagonal(const string spielfeld[fg][fg]){
 
 }
 
-bool checksieg(string spielfeld[fg][fg]){
+bool checksieg(const string spielfeld[fg][fg]){
     if (checkSiegquer(spielfeld) == 3 || checkSiegdiagonal(spielfeld) == 3 || checkSiegvert(spielfeld) == 3){
         cout << "Das Spiel endet unentschieden." << endl;
         cout << endl;

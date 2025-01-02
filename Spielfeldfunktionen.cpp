@@ -1,6 +1,5 @@
 #include "Spielfeldfunktionen.h"
 #include "Funktionen.h"
-#include "Fehleingaben.h"
 #include <string>
 #include <iostream>
 using namespace std;

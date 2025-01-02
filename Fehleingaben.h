@@ -6,9 +6,9 @@
 using namespace std;
 
 /**
-* @brief prüftt ob Eingabe vom Benutzer entsprechend des Datentyps stimmt
+* @brief prüfen ob Eingabe vom Benutzer entsprechend des Datentyps stimmt
 * @param [in] spielername der vom Benutzer eingegeben wird
-* @param [in] position die vom Benutzer eingegeben wird
+* @param [in] position Feld das vom Benutzer ausgewählt wird
 **/
 
 void checkEingabe(string& spielername);

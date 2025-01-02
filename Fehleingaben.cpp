@@ -28,7 +28,9 @@ void checkEingabe(string& spielername) {
 void checkEingabeSpielzug(int& position) {
     while (true){
         cin >> position;
-        if(cin.fail() || position<0 || position>3){ // prüft ob Benutzer einen Wert eingegeben hat, der nicht zum Datentyp von variable passt
+        if (position == "save" || position == "Save" || position == "SAVE") {
+        SpielstandSpeichern(spieler1, spieler2, spielfeldarray[fg][fg], checksieg, winstreak, Spieler1istDran);
+        } if (cin.fail() || position<0 || position>3) { // prüft ob Benutzer einen Wert eingegeben hat, der nicht zum Datentyp von variable passt
             cout << "Ungültige Eingabe, bitte erneut versuchen." << endl;
             cin.clear();   // löscht Fehlerinformation
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ung黮tige Eingabe

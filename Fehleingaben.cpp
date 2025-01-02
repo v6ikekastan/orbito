@@ -25,10 +25,10 @@ void checkEingabe(string& spielername) {
     }
 }
 
-void checkEingabeSpielzug(int& nummer) {
+void checkEingabeSpielzug(int& position) {
     while (true){
-        cin >> nummer;
-        if(cin.fail() || nummer<0 || nummer>3){ // prüft ob Benutzer einen Wert eingegeben hat, der nicht zum Datentyp von variable passt
+        cin >> position;
+        if(cin.fail() || position<0 || position>3){ // prüft ob Benutzer einen Wert eingegeben hat, der nicht zum Datentyp von variable passt
             cout << "Ungültige Eingabe, bitte erneut versuchen." << endl;
             cin.clear();   // löscht Fehlerinformation
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ung黮tige Eingabe

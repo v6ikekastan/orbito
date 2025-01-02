@@ -35,7 +35,10 @@ checkEingabe(spieler2); //Funktion wird aufgerufen
 if (spieler2 == "Computer" || spieler2 == "computer"){
     cout << "test" << endl;
 
+} else {
+    cout << "Wilkommen " << spieler1 << " und " << spieler2 << endl; //LAURA dachte das w鋜e ganz nett :)
 }
+    
 //Spielfeld:
 cout << "Startspielfeld:" << endl;
 spielfelderstellen(spielfeldarray);

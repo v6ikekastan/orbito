@@ -11,13 +11,15 @@ int highscoreAbrufen();                     /** Funktion ruft bisherigen highsco
                                             "highscore.txt" ab. (F)**/
 
 int highscoreVergleichen(int untilscore);   /** Funktion vergleicht bisherigen highscore mit dem
-                                            gerade erspielten und gibt höheren zurück (F)**/
+                                            gerade erspielten und gibt hÃ¶heren zurÃ¼ck (F)**/
 
-void highscoreEintragen(int nhighscore);    /** Funktion trägt neuen highscore in die Textdatei
+void highscoreEintragen(int nhighscore);    /** Funktion trÃ¤gt neuen highscore in die Textdatei
                                             "highscore.txt" ein. (F)**/
 
 void ColorCout(int color, string text);     /** gibt Text in bestimmter Farbe wieder**/
 
-void clearConsole();                        /** löscht text auf der Konsole **/
+void clearConsole();                        /** lÃ¶scht text auf der Konsole **/
+
+void checkSpielzug(char& feld) 
 
 #endif //FUNKTIONEN_H

@@ -17,6 +17,7 @@ string spielfeldarray[fg][fg]{
     {"20", "21", "22", "23"},
     {"30", "31", "32", "33"}
 };
+string spieler1, spieler2;
 bool checksiegStatus, Spieler1istDran;
 int winstreak;
 

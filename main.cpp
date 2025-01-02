@@ -1,6 +1,5 @@
 #include "Funktionen.h"
 #include "Spielfeldfunktionen.h"
-#include "Fehleingaben.h"
 
 #include <iostream>
 #include <string>

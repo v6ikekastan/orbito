@@ -11,21 +11,15 @@ void spielfelderstellen(string spielfeld[fg][fg]){
         for (int j = 0; j < fg; j++){
                 if (spielfeld[i][j] == to_string(i)+ to_string(j)){
                     ColorCout(8, spielfeld[i][j]);
-                    cout <<' ';
                 }
                 if (spielfeld[i][j] == "XX"){
                     ColorCout(12,spielfeld[i][j]);
-                    cout << ' ';
                 }
                 if (spielfeld[i][j] == "=="){
                     ColorCout(1,spielfeld[i][j]);
-                    cout << ' ';
-                }
-
-        }
-    cout << endl;
-    }
-    cout << endl;
+                } cout <<' ';
+        } cout << endl;
+    } cout << endl;
 }
 
 void spielfeldrotierenUhr(string spielfeld[fg][fg]){

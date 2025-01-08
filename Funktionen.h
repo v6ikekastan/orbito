@@ -7,6 +7,8 @@
 
 using namespace std;
 
+const string dateiname = "spielstand.txt";
+
 int highscoreAbrufen();                     /** Funktion ruft bisherigen highscore aus der Textdatei
                                             "highscore.txt" ab. (F)**/
 
@@ -33,7 +35,6 @@ void SpielstandSpeichern(const string& spieler1, const string& spieler2, const s
 
 /**
 * @brief Der Spielstand wird aus einer .txt-Datei gelesen (Aven)
-* @param[in] dateiname Die .txt-Datei mit dem gespeicherten Spielstand
 * @param[in] spieler1 Name des ersten Spielers
 * @param[in] spieler2 Name des zweiten Spielers
 * @param[in] spielfeldarray Spielfeld, zweidimensionales 4x4 Array
@@ -41,13 +42,12 @@ void SpielstandSpeichern(const string& spieler1, const string& spieler2, const s
 * @param[in] winstreak Wieviele Spiele gewonnen wurden
 * @param[in] Spieler1istDran ja/nein ob Spieler 1 dran ist
 **/
-void SpielstandLaden(const string& dateiname, string& spieler1, string& spieler2, string spielfeldarray[fg][fg], bool& checksiegStatus, int& winstreak, bool& Spieler1istDran);
+void SpielstandLaden(string& spieler1, string& spieler2, string spielfeldarray[fg][fg], bool& checksiegStatus, int& winstreak, bool& Spieler1istDran);
 
 /**
 * @brief Löscht alle Inhalte aus der gewünschten Datei (Aven)
-* @param[in] dateiname Name der gewünschten Datei
 **/
-void clearFile(const string& dateiname);
+void clearFile();
 
 /**
 * @brief startet einen neuen Spielstand (Aven)
@@ -64,7 +64,7 @@ void NeuesSpiel(string &spieler1, string &spieler2);
 * @param[in] spieler1 Name des ersten Spielers
 * @param[in] spieler2 Name des zweiten Spielers
 * @param[in] spielfeldarray Spielfeld, zweidimensionales 4x4 Array
-* @param[in] checksieg ja/nein ob das Spiel schon gewonnen wurde
+* @param[in] checksiegStatus ja/nein ob das Spiel schon gewonnen wurde
 * @param[in] winstreak Wieviele Spiele gewonnen wurden
 * @param[in] Spieler1istDran ja/nein ob Spieler 1 dran ist
 **/

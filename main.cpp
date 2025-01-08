@@ -43,7 +43,7 @@ int main(){
         // eingabe zu lowercase
 
         if (neuesLetztesSpiel == 'l' || neuesLetztesSpiel =='L') {
-            SpielstandLaden("spielstand.txt", spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
+            SpielstandLaden(spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
             korrekteEingabeSpielstart = true;
         } else if (neuesLetztesSpiel == 'n' || neuesLetztesSpiel =='N') {
             NeuesSpiel(spieler1, spieler2);

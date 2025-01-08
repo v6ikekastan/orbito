@@ -24,9 +24,9 @@ int checkSiegdiagonal(const string spielfeld[fg][fg]);    /**�berpr�ft, ob e
 bool checksieg(const string spielfeld[fg][fg]);   /**kombiniert checkSiegquer(), checkSiegdiagonal() & checkSiegvert()
                                             und gibt so letzendlich den Sieger aus(F)**/
 
-void spielzug1(string spielfeld[fg][fg], string spieler1);  /** spielt den ausgew�hlten Spielzug von spieler 1**/
+void spielzug1(string spielfeld[fg][fg], string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran);  /** spielt den ausgew�hlten Spielzug von spieler 1**/
 
-void spielzug2(string spielfeld[fg][fg], string spieler2);  /** spielt den Spielzug von spieler 2, wenn Name von Spieler 2
+void spielzug2(string spielfeld[fg][fg], string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran);  /** spielt den Spielzug von spieler 2, wenn Name von Spieler 2
                                                             computer ist, spielt der computer - SpielzugComputer()**/
 
 void SpielzugComputer(string spielfeld[fg][fg]);      /** f�hrt (zuf�lligen) Spielzug von Computer aus **/

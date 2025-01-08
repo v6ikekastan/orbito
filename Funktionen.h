@@ -23,6 +23,18 @@ void ColorCout(int color, string text);     /** gibt Text in bestimmter Farbe wi
 void clearConsole();                        /** löscht Text auf der Konsole **/
 
 /**
+* @brief Löscht alle Inhalte aus der gewünschten Datei (Aven)
+**/
+void clearFile();
+
+/**
+* @brief startet einen neuen Spielstand (Aven)
+* @param[in] &spieler1 Name des 1. Spielers als Referenz
+* @param[in] &spieler2 Name des 2. Spielers als Referenz
+**/
+void NeuesSpiel(string &spieler1, string &spieler2);
+
+/**
 * @brief Der Spielstand wird in einer .txt-Datei gespeichert (Aven)
 * @param[in] spieler1 Name des ersten Spielers
 * @param[in] spieler2 Name des zweiten Spielers
@@ -43,18 +55,6 @@ void SpielstandSpeichern(const string& spieler1, const string& spieler2, const s
 * @param[in] Spieler1istDran ja/nein ob Spieler 1 dran ist
 **/
 void SpielstandLaden(string& spieler1, string& spieler2, string spielfeldarray[fg][fg], bool& checksiegStatus, int& winstreak, bool& Spieler1istDran);
-
-/**
-* @brief Löscht alle Inhalte aus der gewünschten Datei (Aven)
-**/
-void clearFile();
-
-/**
-* @brief startet einen neuen Spielstand (Aven)
-* @param[in] &spieler1 Name des 1. Spielers als Referenz
-* @param[in] &spieler2 Name des 2. Spielers als Referenz
-**/
-void NeuesSpiel(string &spieler1, string &spieler2);
 
 /**
 * @brief prüfen, ob Eingabe vom Benutzer entsprechend des Datentyps stimmt (Laura)

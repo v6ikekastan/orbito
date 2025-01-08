@@ -95,7 +95,7 @@ void NeuesSpiel(string &spieler1, string &spieler2) { // Spielernamen als Refere
     spielfelderstellen(spielfeldarray);
 }
 
-void SpielstandSpeichern(string& spieler1, string& spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) { // & referenz nur bei spielernamen, da a) strings relativ groß sind (vgl. int) und b) da arrays automatisch wie eine referenz behandelt werden
+void SpielstandSpeichern(string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) { // & referenz nur bei spielernamen, da a) strings relativ groß sind (vgl. int) und b) da arrays automatisch wie eine referenz behandelt werden
 
     char OE = 153;
     char ue = 129;
@@ -137,19 +137,16 @@ void SpielstandSpeichern(string& spieler1, string& spieler2, const string spielf
         winstreak++;
     }
     speichern << "Winstreak: " << winstreak << endl;
-
     cout << "Winstreak wurde gespeichert!\n";
-
 
     // bool Spieler1istDran speichernn
     speichern << "Ist Spieler 1 dran?: " << (Spieler1istDran ? true : false) << endl; // Spieler1istDran wird als ja oder nein gespeichert
-
     cout << "Nächster Spieler wurde gespeichernt!\n";
 
     speichern.close();
 }
 
-void SpielstandLaden(const string& dateiname, string& spieler1, string& spieler2, string spielfeldarray[fg][fg], bool& checksiegStatus, int& winstreak, bool& Spieler1istDran) {
+void SpielstandLaden(string &spieler1, string &spieler2, string spielfeldarray[fg][fg], bool& checksiegStatus, int& winstreak, bool& Spieler1istDran) {
 
     string dummy, temp;
     char OE = 153;
@@ -218,7 +215,7 @@ void SpielstandLaden(const string& dateiname, string& spieler1, string& spieler2
     */ 
 }
 
-void checkEingabe(string& spielername) {
+void checkEingabe(string &spielername) {
     while (true) {
         cin >> spielername;
         bool valid = true;
@@ -256,7 +253,7 @@ void checkEingabeSpielzug(string &position, string& spieler1, string& spieler2, 
     }
 }
 
-bool checkSpielzug(const string& spielfeld[fg][fg], int positiony, int positionx){
+bool checkSpielzug(const string (&spielfeld)[fg][fg], int positiony, int positionx){
     
     char oe = 148;
     

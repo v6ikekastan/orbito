@@ -67,8 +67,6 @@ void SpielstandSpeichern(string& spieler1, string& spieler2, const string spielf
 
     ofstream speichern;
 
-    string dateiname = "spielstand.txt";
-
     speichern.open(dateiname);
     
     if (!speichern) { // spielstand.txt konnte nicht geöffnet werden
@@ -123,7 +121,7 @@ void SpielstandLaden(const string& dateiname, string& spieler1, string& spieler2
 
     ifstream laden;
 
-    laden.open("spielstand.txt");
+    laden.open(dateiname);
     
     if (!laden) { // spielstand.txt konnte nicht geöffnet werden
         cerr << "Fehler beim " << OE << "ffnen der Datei \"" << dateiname << "\".\n\n"; // sends data to the standart error stream, heißt der text wird nicht verarbeitet wie ein standart output, sondern direkt auf die konsole geschrieben
@@ -184,11 +182,11 @@ void SpielstandLaden(const string& dateiname, string& spieler1, string& spieler2
     */ 
 }
 
-void clearFile(const string& dateiname) {
+void clearFile() {
 
     ofstream speichern(dateiname, ios::trunc); // in truncate mode öffnen (heißt: alle inhalte werden gelöscht), kommt aus dem input/output stream deshalb ios
 
-    if (!speichern) { // spielstand.txt konnte nicht geöffnet werden
+    if (!speichern) { // datei konnte nicht geöffnet werden
         cerr << "Fehler beim Öffnen der Datei \"" << dateiname << "\".\n\n"; // sends data to the standart error stream, heißt der text wird nicht verarbeitet wie ein standart output, sondern direkt auf die konsole geschrieben
     } else {
         cout << "Die Datei \"" << dateiname << "\" wurde geleert.\n\n\n";
@@ -205,7 +203,7 @@ void NeuesSpiel(string &spieler1, string &spieler2) { // Spielernamen als Refere
     {"30", "31", "32", "33"}
     };
 
-    clearFile("spielstand.txt");
+    clearFile();
 
     cout << "Name von Spieler 1 eingeben: ";
     cin >> spieler1;

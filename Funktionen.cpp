@@ -290,3 +290,18 @@ void FunnyModus() {
     
     // Interruptions beliebig 
 }
+
+string namensmisch(string name) {
+    size_t len = name.length();
+    size_t index1, index2;
+    char temp;
+
+    for (int i = 0; i < len * 2; ++i){
+            index1 = rand() % len;
+            index2 = rand() % len;
+            temp = name[index1];
+            name[index1] = name[index2];
+            name[index2] = temp;
+                    }
+            return name;
+}

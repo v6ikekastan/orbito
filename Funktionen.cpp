@@ -59,6 +59,42 @@ void ColorCout(int color, string text){
    SetConsoleTextAttribute(handle, 7);
 }
 
+void clearFile() {
+
+    ofstream speichern(dateiname, ios::trunc); // in truncate mode öffnen (heißt: alle inhalte werden gelöscht), kommt aus dem input/output stream deshalb ios
+
+    if (!speichern) { // datei konnte nicht geöffnet werden
+        cerr << "Fehler beim Öffnen der Datei \"" << dateiname << "\".\n\n"; // sends data to the standart error stream, heißt der text wird nicht verarbeitet wie ein standart output, sondern direkt auf die konsole geschrieben
+    } else {
+        cout << "Die Datei \"" << dateiname << "\" wurde geleert.\n\n\n";
+    }
+    speichern.close();
+}
+
+void NeuesSpiel(string &spieler1, string &spieler2) { // Spielernamen als Referenz, sodass Änderungen aus der Funktion auch ins main übernommen werden
+
+    string spielfeldarray[fg][fg]{
+    {"00", "01", "02", "03"},
+    {"10", "11", "12", "13"},
+    {"20", "21", "22", "23"},
+    {"30", "31", "32", "33"}
+    };
+
+    clearFile();
+
+    cout << "Name von Spieler 1 eingeben: ";
+    cin >> spieler1;
+    cout << "Name von Spieler 2 eingeben: ";
+    cin >> spieler2;
+    if (spieler2 == "Computer" || spieler2 == "computer"){
+        cout << "test" << endl;
+    }
+
+    //Spielfeld:
+    cout << "Startspielfeld:" << endl;
+    spielfelderstellen(spielfeldarray);
+}
+
 void SpielstandSpeichern(string& spieler1, string& spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) { // & referenz nur bei spielernamen, da a) strings relativ groß sind (vgl. int) und b) da arrays automatisch wie eine referenz behandelt werden
 
     char OE = 153;
@@ -180,42 +216,6 @@ void SpielstandLaden(const string& dateiname, string& spieler1, string& spieler2
     cout << "Winstreak: " << winstreak << endl;
     cout << "Ist Spieler 1 dran?: " << (Spieler1istDran ? "ja" : "nein") << endl;
     */ 
-}
-
-void clearFile() {
-
-    ofstream speichern(dateiname, ios::trunc); // in truncate mode öffnen (heißt: alle inhalte werden gelöscht), kommt aus dem input/output stream deshalb ios
-
-    if (!speichern) { // datei konnte nicht geöffnet werden
-        cerr << "Fehler beim Öffnen der Datei \"" << dateiname << "\".\n\n"; // sends data to the standart error stream, heißt der text wird nicht verarbeitet wie ein standart output, sondern direkt auf die konsole geschrieben
-    } else {
-        cout << "Die Datei \"" << dateiname << "\" wurde geleert.\n\n\n";
-    }
-    speichern.close();
-}
-
-void NeuesSpiel(string &spieler1, string &spieler2) { // Spielernamen als Referenz, sodass Änderungen aus der Funktion auch ins main übernommen werden
-
-    string spielfeldarray[fg][fg]{
-    {"00", "01", "02", "03"},
-    {"10", "11", "12", "13"},
-    {"20", "21", "22", "23"},
-    {"30", "31", "32", "33"}
-    };
-
-    clearFile();
-
-    cout << "Name von Spieler 1 eingeben: ";
-    cin >> spieler1;
-    cout << "Name von Spieler 2 eingeben: ";
-    cin >> spieler2;
-    if (spieler2 == "Computer" || spieler2 == "computer"){
-        cout << "test" << endl;
-    }
-
-    //Spielfeld:
-    cout << "Startspielfeld:" << endl;
-    spielfelderstellen(spielfeldarray);
 }
 
 void checkEingabe(string& spielername) {

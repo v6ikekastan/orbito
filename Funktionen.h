@@ -8,6 +8,10 @@
 using namespace std;
 
 const string dateiname = "spielstand.txt";
+const char ue = 129;
+const char ae = 132;
+const char oe = 148;
+const char OE = 153;
 
 int highscoreAbrufen();                     /** Funktion ruft bisherigen highscore aus der Textdatei
                                             "highscore.txt" ab. (F)**/
@@ -26,6 +30,12 @@ void clearConsole();                        /** löscht Text auf der Konsole **/
 * @brief Löscht alle Inhalte aus der gewünschten Datei (Aven)
 **/
 void clearFile();
+
+/**
+* @brief prüft, ob Eingabe vom Benutzer entsprechend des Datentyps stimmt (Laura)
+* @param[in] spielername der vom Benutzer eingegeben wird
+**/
+void checkEingabe(string& spielername);
 
 /**
 * @brief startet einen neuen Spielstand (Aven)
@@ -57,7 +67,7 @@ void SpielstandSpeichern(const string &spieler1, const string &spieler2, const s
 void SpielstandLaden(string &spieler1, string &spieler2, string spielfeldarray[fg][fg], bool& checksiegStatus, int& winstreak, bool& Spieler1istDran);
 
 /**
-* @brief prüfen, ob Eingabe vom Benutzer entsprechend des Datentyps stimmt (Laura)
+* @brief prüft, ob Eingabe vom Benutzer entsprechend des Datentyps stimmt (Laura)
 * @param[in] spielername der vom Benutzer eingegeben wird
 * @param[in] position Feld das vom Benutzer ausgewählt wird
 * // alle folgenden Parameter sind ausschlielich für SpielstandSpeichern relevant (bearbeitet Aven)
@@ -68,7 +78,6 @@ void SpielstandLaden(string &spieler1, string &spieler2, string spielfeldarray[f
 * @param[in] winstreak Wieviele Spiele gewonnen wurden
 * @param[in] Spieler1istDran ja/nein ob Spieler 1 dran ist
 **/
-void checkEingabe(string& spielername);
 void checkEingabeSpielzug(string &position, string& spieler1, string& spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran);
 
 /**

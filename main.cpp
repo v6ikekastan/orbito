@@ -23,12 +23,6 @@ int winstreak;
 
 int main(){
 
-    char ae, ue, oe, OE;
-    ae = 132;
-    ue = 129;
-    oe = 148;
-    OE = 153;
-
     srand(time(0));
     cout << highscoreAbrufen() << endl;
     highscoreEintragen(highscoreAbrufen() + 1);
@@ -48,7 +42,7 @@ int main(){
         } else if (neuesLetztesSpiel == 'n' || neuesLetztesSpiel =='N') {
             NeuesSpiel(spieler1, spieler2);
             korrekteEingabeSpielstart = true;
-        } else if (neuesLetztesSpiel == 'f') { 
+        } else if (neuesLetztesSpiel == 'f') {
             // platzhalter funny modus
         } else {
             cout << "\nUng" << ue << "ltige Eingabe.\nBitte treffen Sie eine Auswahl.\n\n"; // Fehlermeldung bei invalider Eingabe

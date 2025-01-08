@@ -27,7 +27,6 @@ int highscoreAbrufen(){
     return zahl;
 }
 
-
 int highscoreVergleichen(int untilscore, int scorenow){
     cout << "highscore Vergleich" << endl;
     int ahighscore = fmax(untilscore, scorenow);
@@ -35,7 +34,6 @@ int highscoreVergleichen(int untilscore, int scorenow){
     return ahighscore;
 
 }
-
 
 void highscoreEintragen(int nhighscore){
     ofstream dateiScore("highscore.txt");
@@ -51,7 +49,6 @@ void highscoreEintragen(int nhighscore){
     }
 }
 
-
 void ColorCout(int color, string text){
    HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
    SetConsoleTextAttribute(handle, color);
@@ -64,11 +61,31 @@ void clearFile() {
     ofstream speichern(dateiname, ios::trunc); // in truncate mode öffnen (heißt: alle inhalte werden gelöscht), kommt aus dem input/output stream deshalb ios
 
     if (!speichern) { // datei konnte nicht geöffnet werden
-        cerr << "Fehler beim Öffnen der Datei \"" << dateiname << "\".\n\n"; // sends data to the standart error stream, heißt der text wird nicht verarbeitet wie ein standart output, sondern direkt auf die konsole geschrieben
+        cerr << "Fehler beim " << OE << "ffnen der Datei \"" << dateiname << "\".\n\n"; // sends data to the standart error stream, heißt der text wird nicht verarbeitet wie ein standart output, sondern direkt auf die konsole geschrieben
     } else {
         cout << "Die Datei \"" << dateiname << "\" wurde geleert.\n\n\n";
     }
     speichern.close();
+}
+
+void checkEingabe(string &spielername) {
+    while (true) {
+        cin >> spielername;
+        bool valid = true;
+        for (char c : spielername) {
+            if (!isalpha(c)) { // prüft ob jedes Zeichen ein Buchstabe ist
+                valid = false;
+                break;
+            }
+        }
+        if (!valid || spielername.empty() || cin.fail()) {
+            cout << "Ungültige Eingabe, bitte erneut versuchen." << endl;
+            cin.clear();   // löscht Fehlerinformation
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ungültige Eingabe
+        } else {
+            break; // gültige Eingabe, Schleife verlassen
+        }
+    }
 }
 
 void NeuesSpiel(string &spieler1, string &spieler2) { // Spielernamen als Referenz, sodass Änderungen aus der Funktion auch ins main übernommen werden
@@ -83,9 +100,9 @@ void NeuesSpiel(string &spieler1, string &spieler2) { // Spielernamen als Refere
     clearFile();
 
     cout << "Name von Spieler 1 eingeben: ";
-    cin >> spieler1;
+    checkEingabe(spieler1);
     cout << "Name von Spieler 2 eingeben: ";
-    cin >> spieler2;
+    checkEingabe(spieler2);
     if (spieler2 == "Computer" || spieler2 == "computer"){
         cout << "test" << endl;
     }
@@ -97,14 +114,10 @@ void NeuesSpiel(string &spieler1, string &spieler2) { // Spielernamen als Refere
 
 void SpielstandSpeichern(string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) { // & referenz nur bei spielernamen, da a) strings relativ groß sind (vgl. int) und b) da arrays automatisch wie eine referenz behandelt werden
 
-    char OE = 153;
-    char ue = 129;
-    char ae = 132;
-
     ofstream speichern;
 
     speichern.open(dateiname);
-    
+
     if (!speichern) { // spielstand.txt konnte nicht geöffnet werden
         cerr << "Fehler beim " << OE << "ffnen der Datei \"" << dateiname << "\".\n\n"; // sends data to the standart error stream, heißt der text wird nicht verarbeitet wie ein standart output, sondern direkt auf die konsole geschrieben
     }
@@ -149,18 +162,16 @@ void SpielstandSpeichern(string &spieler1, string &spieler2, const string spielf
 void SpielstandLaden(string &spieler1, string &spieler2, string spielfeldarray[fg][fg], bool& checksiegStatus, int& winstreak, bool& Spieler1istDran) {
 
     string dummy, temp;
-    char OE = 153;
-    char ue = 129;
 
     ifstream laden;
 
     laden.open(dateiname);
-    
+
     if (!laden) { // spielstand.txt konnte nicht geöffnet werden
         cerr << "Fehler beim " << OE << "ffnen der Datei \"" << dateiname << "\".\n\n"; // sends data to the standart error stream, heißt der text wird nicht verarbeitet wie ein standart output, sondern direkt auf die konsole geschrieben
     }
 // laden funktion in überarbeitung
-    /* 
+    /*
     getline(laden, dummy); // "Spieler 1: " überspringen
     getline(laden, spieler1);
 
@@ -212,37 +223,15 @@ void SpielstandLaden(string &spieler1, string &spieler2, string spielfeldarray[f
     cout << "Wurde das Spiel schon gewonnen?" << (checksieg ? "ja" : "nein") << endl;
     cout << "Winstreak: " << winstreak << endl;
     cout << "Ist Spieler 1 dran?: " << (Spieler1istDran ? "ja" : "nein") << endl;
-    */ 
-}
-
-void checkEingabe(string &spielername) {
-    while (true) {
-        cin >> spielername;
-        bool valid = true;
-        for (char c : spielername) {
-            if (!isalpha(c)) { // prüft ob jedes Zeichen ein Buchstabe ist
-                valid = false;
-                break;
-            }
-        }
-        if (!valid || spielername.empty() || cin.fail()) {
-            cout << "Ungültige Eingabe, bitte erneut versuchen." << endl;
-            cin.clear();   // löscht Fehlerinformation
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ungültige Eingabe
-        } else {
-            break; // gültige Eingabe, Schleife verlassen
-        }
-    }
+    */
 }
 
 void checkEingabeSpielzug(string &position, string& spieler1, string& spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) {
-    
-    char ue = 129;
-    
+
     while (true){
         cin >> position; // für string position und stoi ist aven verantwortlich
         if (position == "save" || position == "Save" || position == "SAVE") { // eingabe zu lowercase machen
-        SpielstandSpeichern(spieler1, spieler2, spielfeldarray[fg][fg], checksieg, winstreak, Spieler1istDran);
+        SpielstandSpeichern(spieler1, spieler2, spielfeldarray, checksieg, winstreak, Spieler1istDran);
         } else if (cin.fail() || stoi(position) < 0 || stoi(position) > 3) { // prüft ob Benutzer einen Wert eingegeben hat, der nicht zum Datentyp von variable passt // stoi - konvertiert string zu integer, hier mit der basis 10 (und fehler wenn kein int input) (aven)
             cout << "Ung" << ue << "ltige Eingabe, bitte erneut versuchen." << endl;
             cin.clear();   // löscht Fehlerinformation
@@ -254,9 +243,7 @@ void checkEingabeSpielzug(string &position, string& spieler1, string& spieler2, 
 }
 
 bool checkSpielzug(const string (&spielfeld)[fg][fg], int positiony, int positionx){
-    
-    char oe = 148;
-    
+
     if ( spielfeld[positiony][positionx] == "XX" || spielfeld[positiony][positionx] == "--" ){
         cout << "Spielzug nicht m" << oe << "glich, bitte erneut versuchen." << endl;
        return false;
@@ -265,7 +252,7 @@ bool checkSpielzug(const string (&spielfeld)[fg][fg], int positiony, int positio
     }
 }
 
-void FunnyModus() {
+void FunnyModus(string &spieler1, string &spieler2, string spielfeldarray[fg][fg]) {
 
     cout << "Name von Spieler 1 eingeben: ";
     cin >> spieler1;
@@ -282,10 +269,10 @@ void FunnyModus() {
     cout << "_____________________________________________________________________________\n\n";
     cout << "In diesem Modus ist speichern nicht m" << oe << "glich. Vielen Dank f" << ue << "r Ihr Verst" << ae << "ndnis.\n\n";
     cout << "_____________________________________________________________________________\n\n";
-    
+
     // Spielablauf
-    
-    // Interruptions beliebig 
+
+    // Interruptions beliebig
 }
 
 string namensmisch(string name) {

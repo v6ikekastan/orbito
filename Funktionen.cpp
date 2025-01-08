@@ -59,82 +59,25 @@ void ColorCout(int color, string text){
    SetConsoleTextAttribute(handle, 7);
 }
 
-
-void checkEingabe(string& spielername) {
-    while (true) {
-        cin >> spielername;
-        bool valid = true;
-        for (char c : spielername) {
-            if (!isalpha(c)) { // prüft ob jedes Zeichen ein Buchstabe ist
-                valid = false;
-                break;
-            }
-        }
-        if (!valid || spielername.empty() || cin.fail()) {
-            cout << "Ungültige Eingabe, bitte erneut versuchen." << endl;
-            cin.clear();   // löscht Fehlerinformation
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ungültige Eingabe
-        } else {
-            break; // gtige Eingabe, Schleife verlassen
-        }
-    }
-}
-
-void checkEingabeSpielzug(int& position) {
-    while (true){
-        cin >> position;
-        if (position == "save" || position == "Save" || position == "SAVE") {
-        SpielstandSpeichern(spieler1, spieler2, spielfeldarray[fg][fg], checksieg, winstreak, Spieler1istDran);
-        } else if (cin.fail() || position<0 || position>3) { // prüft ob Benutzer einen Wert eingegeben hat, der nicht zum Datentyp von variable passt
-            cout << "Ungültige Eingabe, bitte erneut versuchen." << endl;
-            cin.clear();   // löscht Fehlerinformation
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ung黮tige Eingabe
-        } else {
-            break; // g黮tige Eingabe, Schleife verlassen
-        }
-    }
-}
-
-bool checkSpielzug(const string& spielfeld, int positiony, int positionx){
-    if ( spielfeld[positiony][positionx] == "XX" || spielfeld[positiony][positionx] == "--" ){
-        cout << "Spielzug nicht moeglich, bitte erneut versuchen." << endl;
-       return false;
-    } else {
-        return true;
-    }
-}
-
 void SpielstandSpeichern(string& spieler1, string& spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) { // & referenz nur bei spielernamen, da a) strings relativ groß sind (vgl. int) und b) da arrays automatisch wie eine referenz behandelt werden
 
     char OE = 153;
     char ue = 129;
+    char ae = 132;
 
     ofstream speichern;
 
-    string dateiname;
+    string dateiname = "spielstand.txt";
 
     speichern.open(dateiname);
+    
     if (!speichern) { // spielstand.txt konnte nicht geöffnet werden
         cerr << "Fehler beim " << OE << "ffnen der Datei \"" << dateiname << "\".\n\n"; // sends data to the standart error stream, heißt der text wird nicht verarbeitet wie ein standart output, sondern direkt auf die konsole geschrieben
     }
 
     // spielernamen speichern, hier noch mit manueller eingabe der namen
-    while (spieler1 != "exit" && spieler2 != "exit") {
-        cout << "Name von Spieler 1 eingeben (oder \"exit\" zum Beenden): ";
-        getline(cin, spieler1); // getline can handle empty inputs, as it reads the whole line until \n, while cin just reads until a whitespace or waits indefinitely for valid input
-
-        cout << "Name von Spieler 2 eingeben (oder \"exit\" zum Beenden): ";
-        getline(cin, spieler2);
-
-
-        if (!spieler1.empty() && !spieler2.empty()) { // exit the loop if both names are entered = keine leeren strings
-            speichern << "Spieler 1: " << spieler1 << endl;
-            speichern << "Spieler 2: " << spieler2 << endl;
-            break; // exit the loop
-        }
-        cerr << "\n\nBeide Spielernamen m" << ue << "ssen eingegeben werden! Versuchen Sie es erneut.\n\n"; // fehlermeldung bei leeren strings
-    }
-
+    speichern << "Spieler 1: " << spieler1 << endl;
+    speichern << "Spieler 2: " << spieler2 << endl;
     cout << "\n\nSpielernamen wurden gespeichert!\n";
 
     // spielfeldarray speichern
@@ -150,7 +93,7 @@ void SpielstandSpeichern(string& spieler1, string& spieler2, const string spielf
 
     // bool checksiegStatus speichern
     checksiegStatus = checksieg(spielfeldarray);
-    speichern << "Wurde das Spiel schon gewonnen?" << (checksiegStatus ? "ja" : "nein") << endl; // sieg wird als ja oder nein gespeichert
+    speichern << "Wurde das Spiel schon gewonnen?" << (checksiegStatus ? true : false) << endl; // sieg wird als ja oder nein gespeichert
 
     cout << "\(Eventueller\) Sieg wurde gespeichert!\n";
 
@@ -165,7 +108,7 @@ void SpielstandSpeichern(string& spieler1, string& spieler2, const string spielf
 
 
     // bool Spieler1istDran speichernn
-    speichern << "Ist Spieler 1 dran?: " << (Spieler1istDran ? "ja" : "nein") << endl; // Spieler1istDran wird als ja oder nein gespeichert
+    speichern << "Ist Spieler 1 dran?: " << (Spieler1istDran ? true : false) << endl; // Spieler1istDran wird als ja oder nein gespeichert
 
     cout << "Nächster Spieler wurde gespeichernt!\n";
 
@@ -181,10 +124,12 @@ void SpielstandLaden(const string& dateiname, string& spieler1, string& spieler2
     ifstream laden;
 
     laden.open("spielstand.txt");
+    
     if (!laden) { // spielstand.txt konnte nicht geöffnet werden
         cerr << "Fehler beim " << OE << "ffnen der Datei \"" << dateiname << "\".\n\n"; // sends data to the standart error stream, heißt der text wird nicht verarbeitet wie ein standart output, sondern direkt auf die konsole geschrieben
     }
-
+// laden funktion in überarbeitung
+    /* 
     getline(laden, dummy); // "Spieler 1: " überspringen
     getline(laden, spieler1);
 
@@ -236,7 +181,7 @@ void SpielstandLaden(const string& dateiname, string& spieler1, string& spieler2
     cout << "Wurde das Spiel schon gewonnen?" << (checksieg ? "ja" : "nein") << endl;
     cout << "Winstreak: " << winstreak << endl;
     cout << "Ist Spieler 1 dran?: " << (Spieler1istDran ? "ja" : "nein") << endl;
-
+    */ 
 }
 
 void clearFile(const string& dateiname) {
@@ -273,6 +218,56 @@ void NeuesSpiel(string &spieler1, string &spieler2) { // Spielernamen als Refere
     //Spielfeld:
     cout << "Startspielfeld:" << endl;
     spielfelderstellen(spielfeldarray);
+}
+
+void checkEingabe(string& spielername) {
+    while (true) {
+        cin >> spielername;
+        bool valid = true;
+        for (char c : spielername) {
+            if (!isalpha(c)) { // prüft ob jedes Zeichen ein Buchstabe ist
+                valid = false;
+                break;
+            }
+        }
+        if (!valid || spielername.empty() || cin.fail()) {
+            cout << "Ungültige Eingabe, bitte erneut versuchen." << endl;
+            cin.clear();   // löscht Fehlerinformation
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ungültige Eingabe
+        } else {
+            break; // gültige Eingabe, Schleife verlassen
+        }
+    }
+}
+
+void checkEingabeSpielzug(string &position, string& spieler1, string& spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) {
+    
+    char ue = 129;
+    
+    while (true){
+        cin >> position; // für string position und stoi ist aven verantwortlich
+        if (position == "save" || position == "Save" || position == "SAVE") { // eingabe zu lowercase machen
+        SpielstandSpeichern(spieler1, spieler2, spielfeldarray[fg][fg], checksieg, winstreak, Spieler1istDran);
+        } else if (cin.fail() || stoi(position) < 0 || stoi(position) > 3) { // prüft ob Benutzer einen Wert eingegeben hat, der nicht zum Datentyp von variable passt // stoi - konvertiert string zu integer, hier mit der basis 10 (und fehler wenn kein int input) (aven)
+            cout << "Ung" << ue << "ltige Eingabe, bitte erneut versuchen." << endl;
+            cin.clear();   // löscht Fehlerinformation
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ungütige Eingabe
+        } else {
+            break; // gültige Eingabe, Schleife verlassen
+        }
+    }
+}
+
+bool checkSpielzug(const string& spielfeld[fg][fg], int positiony, int positionx){
+    
+    char oe = 148;
+    
+    if ( spielfeld[positiony][positionx] == "XX" || spielfeld[positiony][positionx] == "--" ){
+        cout << "Spielzug nicht m" << oe << "glich, bitte erneut versuchen." << endl;
+       return false;
+    } else {
+        return true;
+    }
 }
 
 void FunnyModus() {

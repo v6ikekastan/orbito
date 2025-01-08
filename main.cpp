@@ -40,15 +40,18 @@ int main(){
         cout << "Wollen Sie ein neues Spiel starten (n/N) oder den letzten Spielstand (l/L) laden? ";
         cin >> neuesLetztesSpiel;
         cout << endl;
+        // eingabe zu lowercase
 
         if (neuesLetztesSpiel == 'l' || neuesLetztesSpiel =='L') {
             SpielstandLaden("spielstand.txt", spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
             korrekteEingabeSpielstart = true;
-        } if (neuesLetztesSpiel == 'n' || neuesLetztesSpiel =='N') {
+        } else if (neuesLetztesSpiel == 'n' || neuesLetztesSpiel =='N') {
             NeuesSpiel(spieler1, spieler2);
             korrekteEingabeSpielstart = true;
+        } else if (neuesLetztesSpiel == "f") { 
+            // platzhalter funny modus
         } else {
-            cout << "\nBitte treffen Sie eine Auswahl.\n\n"; // Fehlermeldung bei invalider Eingabe
+            cout << "\nUng" << ue << "ltige Eingabe.\nBitte treffen Sie eine Auswahl.\n\n"; // Fehlermeldung bei invalider Eingabe
         }
     }
 
@@ -60,10 +63,10 @@ int main(){
 
     for (int i = 0; i < 8; i++){
 
-        spielzug1(spielfeldarray, spieler1);
+        spielzug1(spielfeldarray, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
         spielfelderstellen(spielfeldarray);
         spielfeldrotierenUhr(spielfeldarray);
-        spielzug2(spielfeldarray, spieler2);
+        spielzug2(spielfeldarray, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
         spielfelderstellen(spielfeldarray);
         spielfeldrotierenUhr(spielfeldarray);
 

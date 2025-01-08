@@ -43,7 +43,7 @@ void NeuesSpiel(string &spieler1, string &spieler2);
 * @param[in] winstreak Wieviele Spiele gewonnen wurden
 * @param[in] Spieler1istDran ja/nein ob Spieler 1 dran ist
 **/
-void SpielstandSpeichern(const string& spieler1, const string& spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran);
+void SpielstandSpeichern(const string &spieler1, const string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran);
 
 /**
 * @brief Der Spielstand wird aus einer .txt-Datei gelesen (Aven)
@@ -54,7 +54,7 @@ void SpielstandSpeichern(const string& spieler1, const string& spieler2, const s
 * @param[in] winstreak Wieviele Spiele gewonnen wurden
 * @param[in] Spieler1istDran ja/nein ob Spieler 1 dran ist
 **/
-void SpielstandLaden(string& spieler1, string& spieler2, string spielfeldarray[fg][fg], bool& checksiegStatus, int& winstreak, bool& Spieler1istDran);
+void SpielstandLaden(string &spieler1, string &spieler2, string spielfeldarray[fg][fg], bool& checksiegStatus, int& winstreak, bool& Spieler1istDran);
 
 /**
 * @brief prüfen, ob Eingabe vom Benutzer entsprechend des Datentyps stimmt (Laura)
@@ -75,10 +75,10 @@ void checkEingabeSpielzug(string &position, string& spieler1, string& spieler2, 
 * @brief prüfen ob Spielzug vom Benutzer möglich ist (Laura)
 * @param [in] feld das vom Benutzer ausgewählt wird
 **/
-bool checkSpielzug(const string& spielfeld, int positiony, int positionx); //const weil es nur Spielfeld liest
+bool checkSpielzug(const string (&spielfeld)[fg][fg], int positiony, int positionx); //const weil es nur Spielfeld liest
 
 // funny modus
 
-string namensmisch(string name); (Flo)
+string namensmisch(string name); // (Flo)
 
 #endif //FUNKTIONEN_H

@@ -47,31 +47,21 @@ void spielfeldrotierenUhr(string spielfeld[fg][fg]){
             if (temparray[i][j] == "XX" || temparray[i][j] == "=="){
                 if (i == 0 && j < fg - 1){              // außen oben nach rechts
                     spielfeld[i][j + 1] = temparray[i][j];
-                }
-                else if (j == fg - 1 && i < fg - 1){    // außen rechts nach unten
+                } else if (j == fg - 1 && i < fg - 1){    // außen rechts nach unten
                     spielfeld[i + 1][j] = temparray[i][j];
-                }
-                else if (i == fg - 1 && j > 0){         // außen unten nach links
+                } else if (i == fg - 1 && j > 0){         // außen unten nach links
                     spielfeld[i][j - 1] = temparray[i][j];
-                }
-                else if (j == 0 && i > 0){              // außen links nach oben
+                } else if (j == 0 && i > 0){              // außen links nach oben
                     spielfeld[i - 1][j] = temparray[i][j];
-                }
-
-
-                else if (i == 1 && j == 1){    // innen oben nach rechts
+                } else if (i == 1 && j == 1){    // innen oben nach rechts
                     spielfeld[i][j + 1] = temparray[i][j];
-                }
-                else if (i == 2 && j == 2){    // innen unten nach links
+                } else if (i == 2 && j == 2){    // innen unten nach links
                     spielfeld[i][(j - 1)] = temparray[i][j];
-                }
-                else if (j == 1 && i == 2){    // innen links nach oben
+                } else if (j == 1 && i == 2){    // innen links nach oben
                     spielfeld[i-1][j] = temparray[i][j];
-                }
-                else if (j == 2 && i == 1){    // innen rechts nach unten
+                } else if (j == 2 && i == 1){    // innen rechts nach unten
                     spielfeld[i + 1][j] = temparray[i][j];
                 }
-
                 temparray[i][j]= " ";
                 temparray[i][j] = to_string(i) + to_string(j);
             }
@@ -113,31 +103,21 @@ void spielfeldrotierenGegenUhr(string spielfeld[fg][fg]){
             if (temparray[i][j] == "XX" || temparray[i][j] == "=="){
                 if (i == 0 && j < fg && j > 0){              // außen oben nach links
                     spielfeld[i][j - 1] = temparray[i][j];
-                }
-                else if (j == fg - 1 && i < fg && i > 0){    // außen rechts nach oben
+                } else if (j == fg - 1 && i < fg && i > 0){    // außen rechts nach oben
                     spielfeld[i - 1][j] = temparray[i][j];
-                }
-                else if (i == fg - 1 && j >= 0 && j < fg - 1){         // außen unten nach rechts
+                } else if (i == fg - 1 && j >= 0 && j < fg - 1){         // außen unten nach rechts
                     spielfeld[i][j + 1] = temparray[i][j];
-                }
-                else if (j == 0 && i >= 0 && i < fg - 1){              // außen links nach unten
+                } else if (j == 0 && i >= 0 && i < fg - 1){              // außen links nach unten
                     spielfeld[i + 1][j] = temparray[i][j];
-                }
-
-
-                else if (i == 1 && j == 2){    // innen oben nach links
+                } else if (i == 1 && j == 2){    // innen oben nach links
                     spielfeld[i][j - 1] = temparray[i][j];
-                }
-                else if (i == 2 && j == 1){    // innen unten nach rechts
+                } else if (i == 2 && j == 1){    // innen unten nach rechts
                     spielfeld[i][j + 1] = temparray[i][j];
-                }
-                else if (j == 1 && i == 1){    // innen links nach unten
+                } else if (j == 1 && i == 1){    // innen links nach unten
                     spielfeld[i + 1][j] = temparray[i][j];
-                }
-                else if (j == 2 && i == 2){    // innen rechts nach oben
+                } else if (j == 2 && i == 2){    // innen rechts nach oben
                     spielfeld[i - 1][j] = temparray[i][j];
                 }
-
                 temparray[i][j] = to_string(i) + to_string(j);
             }
         }
@@ -157,11 +137,9 @@ int checkSiegquer(const string spielfeld[fg][fg]){
         for (int j = 0; j < fg; j++){
             if (spielfeld[fg][fg] == "==" && spielfeld[i][j] == spielfeld[i][j + 1] && spielfeld[i][j + 2] == spielfeld[i][j + 3] && spielfeld[i][j] == spielfeld[i][j + 1] && spielfeld[i][j] == "XX"){
                 return 1;
-                }
-            else if (spielfeld[i][j] == spielfeld[i][j + 1] && spielfeld[i][j + 2] == spielfeld[i][j + 3] && spielfeld[i][j] == spielfeld[i][j + 1] && spielfeld[i][j] == "XX"){
+                } else if (spielfeld[i][j] == spielfeld[i][j + 1] && spielfeld[i][j + 2] == spielfeld[i][j + 3] && spielfeld[i][j] == spielfeld[i][j + 1] && spielfeld[i][j] == "XX"){
                 return 1;
-                }
-            else if (spielfeld[i][j] == spielfeld[i][j + 1] && spielfeld[i][j + 2] == spielfeld[i][j + 3] && spielfeld[i][j] == spielfeld[i][j + 1] && spielfeld[i][j] == "=="){
+                } else if (spielfeld[i][j] == spielfeld[i][j + 1] && spielfeld[i][j + 2] == spielfeld[i][j + 3] && spielfeld[i][j] == spielfeld[i][j + 1] && spielfeld[i][j] == "=="){
                 return 2;
                 }
             }
@@ -195,31 +173,31 @@ bool checksieg(const string spielfeld[fg][fg]){
     }
 }
 
-void spielzug1(string spielfeld[fg][fg], string spieler1){
-    int positiony;
-    int positionx;
+void spielzug1(string spielfeld[fg][fg], string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) {
+    string positiony; // strings, da in checkEingabeSpielzug auf "save" kontrolliert und anschließend via stoi() zu int umgewandelt wird
+    string positionx;
 
     cout << spieler1 << " (XX) ist am Zug. Zeile [space] Spalte eingeben." << endl;
-    checkEingabeSpielzug(positiony); // Funktion wird aufgerufen
-    checkEingabeSpielzug(positionx);
+    checkEingabeSpielzug(positiony, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran); // Funktion wird aufgerufen
+    checkEingabeSpielzug(positionx, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
 
-    spielfeld[positiony][positionx] = "XX";
+    spielfeld[stoi(positiony)][stoi(positionx)] = "XX";
 }
 
-void spielzug2(string spielfeld[fg][fg], string spieler2){
-    if (spieler2 == "computer" || spieler2 == "Computer"){
+void spielzug2(string spielfeld[fg][fg], string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) {
+    if (spieler2 == "computer" || spieler2 == "Computer") { // lowercase
         cout << spieler2 << " (==) ist am Zug." << endl;
         SpielzugComputer(spielfeld);
     }
-    else if (spieler2 != "computer" && spieler2 != "Computer"){
-        int positiony;
-        int positionx;
+    else if (spieler2 != "computer" && spieler2 != "Computer") { // lowercase
+        string positiony; // string begründung siehe spielzug1
+        string positionx;
 
         cout << spieler2 << " (==) ist am Zug. Zeile [space] Spalte eingeben." << endl;
-        checkEingabeSpielzug(positiony); // Funktion wird aufgerufen
-        checkEingabeSpielzug(positionx);
+        checkEingabeSpielzug(positiony, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran); // Funktion wird aufgerufen
+        checkEingabeSpielzug(positionx, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
 
-        spielfeld[positiony][positionx] = "==";
+        spielfeld[stoi(positiony)][stoi(positionx)] = "==";
     }
 }
 

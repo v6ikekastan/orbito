@@ -274,3 +274,26 @@ void NeuesSpiel(string &spieler1, string &spieler2) { // Spielernamen als Refere
     cout << "Startspielfeld:" << endl;
     spielfelderstellen(spielfeldarray);
 }
+
+void FunnyModus() {
+
+    cout << "Name von Spieler 1 eingeben: ";
+    cin >> spieler1;
+    cout << "Name von Spieler 2 eingeben: ";
+    cin >> spieler2;
+    if (spieler2 == "Computer" || spieler2 == "computer"){
+        cout << "test" << endl;
+    }
+
+    //Spielfeld:
+    cout << "Startspielfeld:" << endl;
+    spielfelderstellen(spielfeldarray);
+
+    cout << "_____________________________________________________________________________\n\n";
+    cout << "In diesem Modus ist speichern nicht m" << oe << "glich. Vielen Dank f" << ue << "r Ihr Verst" << ae << "ndnis.\n\n";
+    cout << "_____________________________________________________________________________\n\n";
+    
+    // Spielablauf
+    
+    // Interruptions beliebig 
+}

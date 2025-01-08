@@ -88,6 +88,6 @@ bool checkSpielzug(const string (&spielfeld)[fg][fg], int positiony, int positio
 
 // funny modus
 
-string namensmisch(string name); // (Flo)
+string namensmisch(string name); // vertauscht die Buchstaben des eingegebenen Namens(Flo)
 
 #endif //FUNKTIONEN_H

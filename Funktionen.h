@@ -79,4 +79,6 @@ bool checkSpielzug(const string& spielfeld, int positiony, int positionx); //con
 
 // funny modus
 
+string namensmisch(string name); (Flo)
+
 #endif //FUNKTIONEN_H

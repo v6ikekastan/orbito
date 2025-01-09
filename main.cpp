@@ -32,7 +32,7 @@ int main(){
     bool korrekteEingabeSpielstart = false; // überprüft, ob eine valide Eingabe zum Spielstart getätigt wurde
 
     while (!korrekteEingabeSpielstart) { // wiederholt solange, bis eine valide Eingabe getätigt wurde
-        cout << "Wollen Sie ein neues Spiel starten (N) oder den letzten Spielstand (L) laden? " << endl;
+        cout << "Wollen Sie ein neues Spiel starten (N), den letzten Spielstand (L) laden oder im Funny-Modus (F) spielen? " << endl;
         cout << endl;
         cout << "Der Funny-Modus kann mit (F) gestartet werden. (Computergegner hier nicht moeglich)" << endl;
         cin >> neuesLetztesSpiel;

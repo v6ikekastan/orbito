@@ -112,11 +112,11 @@ int checkSiegDiagonal2(string spielfeldarray[fg][fg], string pattern) {
 
 bool checkTotalSieg(string arr[fg][fg], string pattern1, string pattern2) {
     if (checkSiegCol(arr, pattern1) || checkSiegRow(arr, pattern1) || checkSiegDiagonal1(arr, pattern1) || checkSiegDiagonal2(arr, pattern1) || checkSiegCol(arr, pattern2) || checkSiegRow(arr, pattern2) || checkSiegDiagonal1(arr, pattern2) || checkSiegDiagonal2(arr, pattern2)) {
-        cout << "\n\nHerzlichen Gl" << ue << "ckwunsch! Das Spiel wurde gewonnen!\n\n!;
+        cout << "\n\nHerzlichen Gl" << ue << "ckwunsch! Das Spiel wurde gewonnen!\n!";
+        cout << "Um zu speichern und beenden, schreiben Sie \"save\".\n\n";
         return true;
     }
 }
-
 
 void clearFile() {
 
@@ -199,7 +199,7 @@ void SpielstandSpeichern(const string &spieler1, const string &spieler2, string 
     cout << " Spielfeld wurde gespeichert!\n";
 
     // bool checksiegStatus speichern
-    checksiegStatus = checksieg(spielfeldarray);
+    checksiegStatus = checkTotalSieg(spielfeldarray, pattern1, pattern2);
     speichern << "Wurde das Spiel schon gewonnen?\n" << (checksiegStatus ? true : false) << endl; // sieg wird als ja oder nein gespeichert
 
     Sleep(150);
@@ -279,7 +279,7 @@ void SpielstandLaden(string &spieler1, string &spieler2, string spielfeldarray[f
         cout << endl;
     } cout << endl;
 
-    cout << "Wurde das Spiel schon gewonnen? " << (checksieg ? "ja" : "nein") << "\n\n";
+    cout << "Wurde das Spiel schon gewonnen? " << (checksiegStatus ? "ja" : "nein") << "\n\n";
     cout << "Winstreak: " << winstreak << "\n\n";
     cout << "Ist Spieler 1 dran? " << (Spieler1istDran ? "ja" : "nein") << endl;
 }
@@ -292,7 +292,7 @@ void checkSave(string position, string &spieler1, string &spieler2, string spiel
     }
 
     if (position == "save") {
-        SpielstandSpeichern(spieler1, spieler2, spielfeldarray, checksieg, winstreak, Spieler1istDran);
+        SpielstandSpeichern(spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
         exit(0);
     } else;
 }
@@ -408,7 +408,7 @@ void FunnyModus(string &spieler1, string &spieler2, string spielfeldarray[fg][fg
 
         extraStein(spielfeldarray, i);
 
-        if (checksieg(spielfeldarray) == true) {
+        if (checkTotalSieg(spielfeldarray, pattern1, pattern2) == true) {
             break;
         }
 

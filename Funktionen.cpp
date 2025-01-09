@@ -264,13 +264,13 @@ void checkEingabeSpielzug(int &position, string& spieler1, string& spieler2, con
     }
 }
 
-bool checkSpielzug(const string (&spielfeld)[fg][fg], int positiony, int positionx){
+bool checkSpielzug(const string spielfeld[fg][fg], int positiony, int positionx){
 
-    if ( spielfeld[positiony][positionx] == "XX" || spielfeld[positiony][positionx] == "--" ){
+    if (spielfeld[positiony][positionx] == "XX" || spielfeld[positiony][positionx] == "--" ){
         cout << "Spielzug nicht m" << oe << "glich, bitte erneut versuchen." << endl;
        return false;
     } else {
-        return true;
+    return true;
     }
 }
 

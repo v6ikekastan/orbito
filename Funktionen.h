@@ -98,8 +98,11 @@ void checkEingabeSpielzug(int &position, string& spieler1, string& spieler2, con
 **/
 bool checkSpielzug(const string spielfeld[fg][fg], int positiony, int positionx); 
 
-// funny modus
-
+/**
+* @brief Die Buchstaben des Namen werden untereinander vertauscht (Florian)
+* @param[in] name Name des Spielers
+* @param[out] name vermischter Name des Spielers
+**/
 string namensmisch(string name); // (Flo)
 
 #endif //FUNKTIONEN_H

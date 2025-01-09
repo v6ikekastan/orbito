@@ -146,7 +146,7 @@ void steinVerschieben(string spielfeld[fg][fg], string spieler, int spielernumme
     begrenzung = 0;
 
     cout << "Optionaler Spielzug: orthogonale Verschiebung eines gegnerischen Steins." << endl;
-    cout << "Fuer Ausfuehrung beliebigen Buchstaben eingeben. Bei abbruch beliebige Zahl." << endl;
+    cout << "F" << ue << "r Ausf" << ue << "hrung einen beliebigen Buchstaben eingeben. F" << ue << "r Abbruch eine beliebige Zahl." << endl;
     cin >> ausfuehrung;
     if (!isalpha(ausfuehrung)){
         cout << "Das Spiel wird ohne optionalen Spielzug fortgesetzt." << endl;

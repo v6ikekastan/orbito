@@ -177,7 +177,7 @@ void spielzug1(string spielfeld[fg][fg], string &spieler1, string &spieler2, con
     int positiony, positionx;
 
     cout << spieler1 << " (XX) ist am Zug." << endl;
-    steinverschieben(spielfeld, spieler1, 1);
+    steinVerschieben(spielfeld, spieler1, 1);
     cout <<"Zeile [space] Spalte eingeben." << endl;
 
     do { // Wiederholen, bis der Spieler einen gültigen Zug tätigt
@@ -202,7 +202,7 @@ void spielzug2(string spielfeld[fg][fg], string &spieler1, string &spieler2, con
     
        
     cout << spieler2 << " (OO) ist am Zug." << endl;
-    steinverschieben(spielfeld, spieler2, 2);
+    steinVerschieben(spielfeld, spieler2, 2);
     cout <<"Zeile [space] Spalte eingeben." << endl;
 
     do { // Wiederholen, bis der Spieler einen gültigen Zug tätigt

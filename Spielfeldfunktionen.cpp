@@ -176,7 +176,9 @@ bool checksieg(const string spielfeld[fg][fg]){
 void spielzug1(string spielfeld[fg][fg], string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) {
     int positiony, positionx;
 
-    cout << spieler1 << " (XX) ist am Zug. Zeile [space] Spalte eingeben." << endl;
+    cout << spieler1 << " (XX) ist am Zug." << endl;
+    steinverschieben(spielfeld, spieler1, 1);
+    cout <<"Zeile [space] Spalte eingeben." << endl;
 
     do { // Wiederholen, bis der Spieler einen gültigen Zug tätigt
         checkEingabeSpielzug(positiony, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
@@ -193,18 +195,22 @@ void spielzug2(string spielfeld[fg][fg], string &spieler1, string &spieler2, con
     if (spieler2 == "computer" || spieler2 == "Computer") {
         cout << spieler2 << " (==) ist am Zug." << endl;
         SpielzugComputer(spielfeld);
-    } else if (spieler2 != "computer" && spieler2 != "Computer") {
+        } 
+    else if (spieler2 != "computer" && spieler2 != "Computer") {
         int positiony;
         int positionx;
-
-       cout << spieler2 << " (==) ist am Zug. Zeile [space] Spalte eingeben." << endl;
+    
+       
+    cout << spieler2 << " (OO) ist am Zug." << endl;
+    steinverschieben(spielfeld, spieler2, 2);
+    cout <<"Zeile [space] Spalte eingeben." << endl;
 
     do { // Wiederholen, bis der Spieler einen gültigen Zug tätigt
         checkEingabeSpielzug(positiony, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
         checkEingabeSpielzug(positionx, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
 
-    if (!checkSpielzug(spielfeld, positiony, positionx)) {} // Überprüfe, ob der Zug gültig ist
-         cout << "Spielzug nicht m" << oe << "glich, bitte erneut versuchen." << endl;
+        if (!checkSpielzug(spielfeld, positiony, positionx)) {} // Überprüfe, ob der Zug gültig ist
+             cout << "Spielzug nicht m" << oe << "glich, bitte erneut versuchen." << endl;
     } while (!checkSpielzug(spielfeld, positiony, positionx)); // Solange der Zug ungültig ist, wiederhole die Eingabeaufforderung
 
         spielfeld[positiony][positionx] = "==";

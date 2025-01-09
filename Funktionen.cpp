@@ -136,12 +136,14 @@ void SpielstandSpeichern(const string &spieler1, const string &spieler2, const s
         }
         speichern << endl; // fügt einen zeilenumbruch nach jeder zeile ein
     }
+    Sleep(150);
     cout << " Spielfeld wurde gespeichert!\n";
 
     // bool checksiegStatus speichern
     checksiegStatus = checksieg(spielfeldarray);
     speichern << "Wurde das Spiel schon gewonnen?\n" << (checksiegStatus ? true : false) << endl; // sieg wird als ja oder nein gespeichert
 
+    Sleep(150);
     cout << "\(Eventueller\) Sieg wurde gespeichert!\n";
 
     // int winstreak speichern
@@ -150,13 +152,21 @@ void SpielstandSpeichern(const string &spieler1, const string &spieler2, const s
         winstreak++;
     }
     speichern << "Winstreak:\n" << winstreak << endl;
+    Sleep(150);
     cout << " Winstreak wurde gespeichert!\n";
 
     // bool Spieler1istDran speichernn
     speichern << "Ist Spieler 1 dran?:\n" << (Spieler1istDran ? true : false) << endl; // Spieler1istDran wird als ja oder nein gespeichert
-    cout << " N" << ae << "chster Spieler wurde gespeichernt!\n";
+    Sleep(150);
+    cout << " N" << ae << "chster Spieler wurde gespeichernt!\n\n";
 
     speichern.close();
+    Sleep(500);
+    cout << "_________________________________________________________________________________________________\n\n";
+    cout << "Vielen Dank f" << ue <<"r\'s Spielen! Bis zum n" << ae << "chsten Mal!!\n\n";
+    cout << "_________________________________________________________________________________________________\n\n";
+
+    exit(0);
 }
 
 void SpielstandLaden(string &spieler1, string &spieler2, string spielfeldarray[fg][fg], bool& checksiegStatus, int& winstreak, bool& Spieler1istDran) {
@@ -237,7 +247,7 @@ void checkEingabeSpielzug(int &position, string& spieler1, string& spieler2, con
             cin >> checkInput; // Read the failed input as a string
 
             // überprüft ob die eingabe "save" ist
-            checkSave(CheckInput, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
+            checkSave(checkInput, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
 
             // wenn input nicht "save" ist, dann ungültig
             cout << "Ung" << ue << "ltige Eingabe, bitte erneut versuchen.\n";

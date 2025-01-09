@@ -21,6 +21,8 @@ int highscoreVergleichen(int untilscore);   /** Funktion vergleicht bisherigen h
 
 void highscoreEintragen(int nhighscore);    /** Funktion trägt neuen highscore in die Textdatei
                                             "highscore.txt" ein. (F)**/
+// highscore funktionen wurde nicht benötigt
+
 
 void ColorCout(int color, string text);     /** gibt Text in bestimmter Farbe wieder**/
 

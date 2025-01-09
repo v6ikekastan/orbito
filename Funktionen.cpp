@@ -333,7 +333,7 @@ void FunnyModus(string &spieler1, string &spieler2, string spielfeldarray[fg][fg
     int zugCounter = 0;
     string spielfeld[fg][fg]; //für Zeile 309
 
-        spielzug1(spielfeldarray, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran, zugCounter);
+        spielzug1(spielfeldarray, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
         spielfelderstellen(spielfeldarray);
         spielfeldrotierenUhr(spielfeldarray);
         spielzug2(spielfeldarray, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);

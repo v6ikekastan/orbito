@@ -64,7 +64,7 @@ void SpielstandSpeichern(const string &spieler1, const string &spieler2, const s
 * @param[in] winstreak Wieviele Spiele gewonnen wurden
 * @param[in] Spieler1istDran true/false ob Spieler 1 dran ist
 **/
-void SpielstandLaden(string &spiel &spieler2, string spielfeldarray[fg][fg], bool& checksiegStatus, int& winstreak, bool& Spieler1istDran);
+void SpielstandLaden(string &spieler1,string &spieler2, string spielfeldarray[fg][fg], bool& checksiegStatus, int& winstreak, bool& Spieler1istDran);
 
 
 /**
@@ -97,7 +97,7 @@ void checkEingabeSpielzug(int &position, string& spieler1, string& spieler2, con
 * @brief prüfen ob Spielzug vom Benutzer möglich ist (Laura)
 * @param [in] feld das vom Benutzer ausgewählt wird
 **/
-bool checkSpielzug(string spielfeld[fg][fg], int positiony, int positionx); 
+bool checkSpielzug(string spielfeld[fg][fg], int positiony, int positionx);
 
 /**
 * @brief Die Buchstaben des Namen werden untereinander vertauscht (Florian)
@@ -110,6 +110,6 @@ string namensmisch(string name); // (Flo)
 * @brief platziert einen Stein OO zufällig im Feld (Laura)(Flo Zeile 279-284)
 * @param [out] zugCounter zählt die Durchläufe
 **/
-void extraStein(string spielfeld[fg][fg], int &zugCounter); 
+void extraStein(string spielfeld[fg][fg], int &zugCounter);
 
 #endif //FUNKTIONEN_H

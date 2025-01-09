@@ -32,7 +32,9 @@ int main(){
     bool korrekteEingabeSpielstart = false; // überprüft, ob eine valide Eingabe zum Spielstart getätigt wurde
 
     while (!korrekteEingabeSpielstart) { // wiederholt solange, bis eine valide Eingabe getätigt wurde
-        cout << "Wollen Sie ein neues Spiel starten (N) oder den letzten Spielstand (L) laden? "; // anpassen für funny modus
+        cout << "Wollen Sie ein neues Spiel starten (N) oder den letzten Spielstand (L) laden? " << endl;
+        cout << endl;
+        cout << "Der Funny-Modus kann mit (F) gestartet werden. (Computergegner hier nicht moeglich)" << endl;
         cin >> neuesLetztesSpiel;
         cout << endl;
         neuesLetztesSpiel = tolower(neuesLetztesSpiel);
@@ -44,7 +46,7 @@ int main(){
             NeuesSpiel(spieler1, spieler2);
             korrekteEingabeSpielstart = true;
         } else if (neuesLetztesSpiel == 'f') {
-            // platzhalter funny modus.
+            FunnyModus(spieler1, spieler2, spielfeldarray);
         } else {
             cout << "Ung" << ue << "ltige Eingabe, bitte erneut versuchen.\n"; // Fehlermeldung bei invalider Eingabe
             cin.clear();
@@ -57,16 +59,34 @@ int main(){
     cout << "_________________________________________________________________________________________________\n\n";
 
     bool Spieler1istDran = false; // notwendig zum den Spielstand zu speichern, logisch eigentlich inkorrekt da spieler1 ja zuerst zieht aber egal
+    string richtung;
 
     for (int i = 0; i < 8; i++){
 
         spielzug1(spielfeldarray, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
         spielfelderstellen(spielfeldarray);
-        spielfeldrotierenUhr(spielfeldarray);
+
+        cout << "Rotationsrichtung waehlen. (rechts/uhr oder links/gegenUhr)" << endl;
+        cin >> richtung ;
+        if (richtung == "r" || richtung == "R" || richtung == "U" || richtung == "u" || richtung == "rechts" || richtung == "Rechts" || richtung == "Uhr" || richtung == "uhr" ){
+            spielfeldrotierenUhr(spielfeldarray);
+        }
+        else{
+            spielfeldrotierenGegenUhr(spielfeldarray);
+        }
+        cin.clear();
         spielzug2(spielfeldarray, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
         spielfelderstellen(spielfeldarray);
-        spielfeldrotierenUhr(spielfeldarray);
 
+        cout << "Rotationsrichtung waehlen. (rechts/uhr oder links/gegenUhr)" << endl;
+        cin >> richtung;
+        if (richtung == "r" || richtung == "R" || richtung == "U" || richtung == "u" || richtung == "rechts" || richtung == "Rechts" || richtung == "Uhr" || richtung == "uhr" ){
+            spielfeldrotierenUhr(spielfeldarray);
+        }
+        else{
+            spielfeldrotierenGegenUhr(spielfeldarray);
+        }
+        cin.clear();
         Spieler1istDran = true; // nachdem spieler2 seinen zug getätigt hat, ist spieler1 dran
 
         if (checksieg(spielfeldarray) == true) {

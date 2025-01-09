@@ -70,28 +70,25 @@ void clearFile() {
 }
 
 void checkEingabe(string &spielername) {
-    while (true) {  // Endlos-Schleife, bis eine gültige Eingabe erfolgt
-        cin >> spielername; // Eingabe des Spielernamens durch den Nutzer
-
-        bool valid = true; // Überprüfung ob die Eingabe gültig ist
-
-        for (char c : spielername) { // Schleife, um jedes Zeichen im Spielernamen zu prüfen
-            if (!isalpha(c)) { // Überprüft, ob das Zeichen kein Buchstabe ist
-                valid = false; // Falls ein Zeichen ungültig ist wird bool valid auf false gesetzt
-                break; // Abbruch der Überprüfung wenn ein ungültiges Zeichen gefunden wurde
+    while (true) {
+        cin >> spielername;
+        bool valid = true;
+        for (char c : spielername) {
+            if (!isalpha(c)) { // prüft ob jedes Zeichen ein Buchstabe ist
+                valid = false;
+                break;
             }
         }
-        
-        if (!valid || spielername.empty() || cin.fail()) { // Bedingungen um festzustellen ob die Eingabe ungültig ist
-            cout << "Ung" << ue << "ltige Eingabe, bitte erneut versuchen." << endl; 
-
-            cin.clear();   // Setzt den Fehlerstatus des Eingabestreams zurück
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Überspringt alle verbleibenden Zeichen in der Eingabezeile, um sie zu ignorieren
+        if (!valid || spielername.empty() || cin.fail()) {
+            cout << "Ung" << ue << "ltige Eingabe, bitte erneut versuchen." << endl;
+            cin.clear();   // löscht Fehlerinformation
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ungültige Eingabe
         } else {
-            break; // Schleife beendet falls die Eingabe gültig ist 
+            break; // gültige Eingabe, Schleife verlassen
         }
     }
 }
+
 void NeuesSpiel(string &spieler1, string &spieler2) { // Spielernamen als Referenz, sodass Änderungen aus der Funktion auch ins main übernommen werden
 
     string spielfeldarray[fg][fg]{
@@ -159,7 +156,7 @@ void SpielstandSpeichern(const string &spieler1, const string &spieler2, const s
     Sleep(150);
     cout << " Winstreak wurde gespeichert!\n";
 
-    // bool Spieler1istDran speichern
+    // bool Spieler1istDran speichernn
     speichern << "Ist Spieler 1 dran?:\n" << (Spieler1istDran ? true : false) << endl; // Spieler1istDran wird als ja oder nein gespeichert
     Sleep(150);
     cout << " N" << ae << "chster Spieler wurde gespeichernt!\n\n";
@@ -260,7 +257,7 @@ void checkEingabeSpielzug(int &position, string& spieler1, string& spieler2, con
             if(cin.fail() || position < 0 || position > 3){ // prüft ob Benutzer einen Wert eingegeben hat, der nicht zum Datentyp von variable passt
                 cout << "Ung" << ue << "ltige Eingabe, bitte erneut versuchen." << endl;
                 cin.clear();   // löscht Fehlerinformation
-                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ungültige Eingabe
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ungütige Eingabe
             } else {
                 break; // gültige Eingabe, Schleife verlassen
             }
@@ -271,7 +268,7 @@ void checkEingabeSpielzug(int &position, string& spieler1, string& spieler2, con
 bool checkSpielzug(string spielfeld[fg][fg], int positiony, int positionx){
 
     if (spielfeld[positiony][positionx] == "XX" || spielfeld[positiony][positionx] == "==" ){
-    cout << "Spielzug nicht m" << oe << "glich, bitte erneut versuchen." << endl;
+
        return false; //ungültiger Spielzug
     } else {
     return true; //gültiger Spielzug
@@ -314,16 +311,17 @@ void extraStein(string spielfeld[4][4], int &zugCounter){
 
 
 void FunnyModus(string &spieler1, string &spieler2, string spielfeldarray[fg][fg]) {
+    string richtung;
+    string spieler11;
+    string spieler22;
 
     cout << "Name von Spieler 1 eingeben: ";
     checkEingabe(spieler1);
+    spieler11 = namensmisch(spieler1);
     cout << "Name von Spieler 2 eingeben: ";
     checkEingabe(spieler2);
-    if (spieler2 == "Computer" || spieler2 == "computer"){
-        cout << "test" << endl;
-    }
+    spieler22 = namensmisch(spieler2);
 
-    //Spielfeld:
     cout << "Startspielfeld:" << endl;
     spielfelderstellen(spielfeldarray);
 
@@ -336,16 +334,29 @@ void FunnyModus(string &spieler1, string &spieler2, string spielfeldarray[fg][fg
     int zugCounter = 0;
     string spielfeld[fg][fg]; //für Zeile 309
 
-        spielzug1(spielfeldarray, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
-        spielfelderstellen(spielfeldarray);
-        spielfeldrotierenUhr(spielfeldarray);
-        spielzug2(spielfeldarray, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
-        spielfelderstellen(spielfeldarray);
-        spielfeldrotierenUhr(spielfeldarray);
-        extraStein(spielfeld, zugCounter);
+    for (int i = 0; i < 8; i++){
+        funny_spielzug1(spielfeldarray, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
+        funny_spielfelderstellen(spielfeldarray);
 
 
-    // Interruptions beliebig
+        funny_spielfeldrotierenUhr(spielfeldarray);
+
+        funny_spielzug2(spielfeldarray, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
+        funny_spielfelderstellen(spielfeldarray);
+
+        funny_spielfeldrotierenUhr(spielfeldarray);
+
+        Spieler1istDran = true; // nachdem spieler2 seinen zug getätigt hat, ist spieler1 dran
+
+        extraStein(spielfeldarray, i);
+
+        if (checksieg(spielfeldarray) == true) {
+            break;
+        }
+
+
+
+    }
 }
 
 string namensmisch(string name) {

@@ -21,8 +21,6 @@ int highscoreVergleichen(int untilscore);   /** Funktion vergleicht bisherigen h
 
 void highscoreEintragen(int nhighscore);    /** Funktion trägt neuen highscore in die Textdatei
                                             "highscore.txt" ein. (F)**/
-// highscore funktionen wurde nicht benötigt
-
 
 void ColorCout(int color, string text);     /** gibt Text in bestimmter Farbe wieder**/
 
@@ -113,5 +111,7 @@ string namensmisch(string name); // (Flo)
 * @param [out] zugCounter zählt die Durchläufe
 **/
 void extraStein(string spielfeld[fg][fg], int &zugCounter);
+
+void FunnyModus(string &spieler1, string &spieler2, string spielfeldarray[fg][fg]);
 
 #endif //FUNKTIONEN_H

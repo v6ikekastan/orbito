@@ -254,7 +254,7 @@ void spielzug2(string spielfeld[fg][fg], string &spieler1, string &spieler2, con
         int positionx;
 
 
-    cout << spieler2 << " (OO) ist am Zug." << endl;
+    cout << spieler2 << " (==) ist am Zug." << endl;
     steinVerschieben(spielfeld, spieler2, 2);
     cout <<"Zeile [space] Spalte eingeben." << endl;
 

@@ -382,7 +382,7 @@ void SpielzugComputerL(string spielfeld[fg][fg]){
             int rotation;
             rotation = rand() % 2 + 1;
             if (rotation == 1){
-                cout << "Computer waehlt Feld " << i << j << endl;
+                cout << "Computer w" << ae << "hlt Feld " << i << j << endl;
                 cout << "und rotiert gegen den Uhrzeigersinn." << endl;
                 spielfeldrotierenGegenUhr(spielfeld);
                 return;
@@ -497,7 +497,7 @@ void funny_spielzug2(string spielfeld[fg][fg], string &spieler1, string &spieler
         int positionx;
 
 
-    cout << spieler2 << " (OO) ist am Zug." << endl;
+    cout << spieler2 << " (==) ist am Zug." << endl;
 
     cout <<"Zeile [space] Spalte eingeben." << endl;
 

@@ -79,7 +79,7 @@ void checkEingabe(string &spielername) {
             }
         }
         if (!valid || spielername.empty() || cin.fail()) {
-            cout << "Ungültige Eingabe, bitte erneut versuchen." << endl;
+            cout << "Ung" << ue << "ltige Eingabe, bitte erneut versuchen." << endl;
             cin.clear();   // löscht Fehlerinformation
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ungültige Eingabe
         } else {
@@ -226,19 +226,34 @@ void SpielstandLaden(string &spieler1, string &spieler2, string spielfeldarray[f
     */
 }
 
-void checkEingabeSpielzug(string &position, string& spieler1, string& spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) {
+void checkSave(int &position, string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) {
 
-    while (true){
-        cin >> position; // für string position und stoi ist aven verantwortlich
-        if (position == "save" || position == "Save" || position == "SAVE") { // eingabe zu lowercase machen
+    string positionSaveCheck = to_string(position);
+
+    int strLaenge = positionSaveCheck.length(); // transformiert string zu lowercase
+    for (int i = 0; i < strLaenge; i++) {
+        positionSaveCheck[i] = tolower(positionSaveCheck[i]); // geht jeden char des strings bis zum ende durch
+    }
+
+    if (positionSaveCheck == "save") {
         SpielstandSpeichern(spieler1, spieler2, spielfeldarray, checksieg, winstreak, Spieler1istDran);
-        } else if (cin.fail() || stoi(position) < 0 || stoi(position) > 3) { // prüft ob Benutzer einen Wert eingegeben hat, der nicht zum Datentyp von variable passt // stoi - konvertiert string zu integer, hier mit der basis 10 (und fehler wenn kein int input) (aven)
+        exit(0);
+    } else;
+}
+
+void checkEingabeSpielzug(int &position, string& spieler1, string& spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) {
+
+    while(true){
+        cin >> position;
+
+        checkSave(position, spieler1, spieler2, spielfeldarray, checksieg, winstreak, Spieler1istDran);
+
+        if(cin.fail() || position < 0 || position > 3){ // prüft ob Benutzer einen Wert eingegeben hat, der nicht zum Datentyp von variable passt
             cout << "Ung" << ue << "ltige Eingabe, bitte erneut versuchen." << endl;
             cin.clear();   // löscht Fehlerinformation
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ungütige Eingabe
-        } else {
-            break; // gültige Eingabe, Schleife verlassen
-        }
+            cout << "test!!";
+        } else; // gültige Eingabe, Schleife verlassen
     }
 }
 
@@ -255,9 +270,9 @@ bool checkSpielzug(const string (&spielfeld)[fg][fg], int positiony, int positio
 void FunnyModus(string &spieler1, string &spieler2, string spielfeldarray[fg][fg]) {
 
     cout << "Name von Spieler 1 eingeben: ";
-    cin >> spieler1;
+    checkEingabe(spieler1);
     cout << "Name von Spieler 2 eingeben: ";
-    cin >> spieler2;
+    checkEingabe(spieler2);
     if (spieler2 == "Computer" || spieler2 == "computer"){
         cout << "test" << endl;
     }

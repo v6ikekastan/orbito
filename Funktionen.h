@@ -49,9 +49,9 @@ void NeuesSpiel(string &spieler1, string &spieler2);
 * @param[in] spieler1 Name des ersten Spielers
 * @param[in] spieler2 Name des zweiten Spielers
 * @param[in] spielfeldarray Spielfeld, zweidimensionales 4x4 Array
-* @param[in] checksiegStatus ja/nein ob das Spiel schon gewonnen wurde
+* @param[in] checksiegStatus true/false ob das Spiel schon gewonnen wurde
 * @param[in] winstreak Wieviele Spiele gewonnen wurden
-* @param[in] Spieler1istDran ja/nein ob Spieler 1 dran ist
+* @param[in] Spieler1istDran true/false ob Spieler 1 dran ist
 **/
 void SpielstandSpeichern(const string &spieler1, const string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran);
 
@@ -60,25 +60,37 @@ void SpielstandSpeichern(const string &spieler1, const string &spieler2, const s
 * @param[in] spieler1 Name des ersten Spielers
 * @param[in] spieler2 Name des zweiten Spielers
 * @param[in] spielfeldarray Spielfeld, zweidimensionales 4x4 Array
-* @param[in] checksiegStatus ja/nein ob das Spiel schon gewonnen wurde
+* @param[in] checksiegStatus true/false ob das Spiel schon gewonnen wurde
 * @param[in] winstreak Wieviele Spiele gewonnen wurden
-* @param[in] Spieler1istDran ja/nein ob Spieler 1 dran ist
+* @param[in] Spieler1istDran true/false ob Spieler 1 dran ist
 **/
 void SpielstandLaden(string &spieler1, string &spieler2, string spielfeldarray[fg][fg], bool& checksiegStatus, int& winstreak, bool& Spieler1istDran);
 
 /**
+* @brief Formatiert die Eingabe zu einem string und sucht nach "save" (Aven)
+* @param[in] position Feld das vom Benutzer ausgewählt wird
+// alle folgenden Parameter sind ausschlielich für SpielstandSpeichern relevant
+* @param[in] spieler1 Name des ersten Spielers
+* @param[in] spieler2 Name des zweiten Spielers
+* @param[in] spielfeldarray Spielfeld, zweidimensionales 4x4 Array
+* @param[in] checksiegStatus true/false ob das Spiel schon gewonnen wurde
+* @param[in] winstreak Wieviele Spiele gewonnen wurden
+* @param[in] Spieler1istDran true/false ob Spieler 1 dran ist
+**/
+void checkSave(int &position, string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran);
+
+/**
 * @brief prüft, ob Eingabe vom Benutzer entsprechend des Datentyps stimmt (Laura)
-* @param[in] spielername der vom Benutzer eingegeben wird
 * @param[in] position Feld das vom Benutzer ausgewählt wird
 * // alle folgenden Parameter sind ausschlielich für SpielstandSpeichern relevant (bearbeitet Aven)
 * @param[in] spieler1 Name des ersten Spielers
 * @param[in] spieler2 Name des zweiten Spielers
 * @param[in] spielfeldarray Spielfeld, zweidimensionales 4x4 Array
-* @param[in] checksiegStatus ja/nein ob das Spiel schon gewonnen wurde
+* @param[in] checksiegStatus true/false ob das Spiel schon gewonnen wurde
 * @param[in] winstreak Wieviele Spiele gewonnen wurden
-* @param[in] Spieler1istDran ja/nein ob Spieler 1 dran ist
+* @param[in] Spieler1istDran true/false ob Spieler 1 dran ist
 **/
-void checkEingabeSpielzug(string &position, string& spieler1, string& spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran);
+void checkEingabeSpielzug(int &position, string& spieler1, string& spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran);
 
 /**
 * @brief prüfen ob Spielzug vom Benutzer möglich ist (Laura)

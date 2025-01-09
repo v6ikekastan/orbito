@@ -31,27 +31,27 @@ int main(){
     bool korrekteEingabeSpielstart = false; // überprüft, ob eine valide Eingabe zum Spielstart getätigt wurde
 
     while (!korrekteEingabeSpielstart) { // wiederholt solange, bis eine valide Eingabe getätigt wurde
-        cout << "Wollen Sie ein neues Spiel starten (n/N) oder den letzten Spielstand (l/L) laden? ";
+        cout << "Wollen Sie ein neues Spiel starten (N) oder den letzten Spielstand (L) laden? "; // anpassen für funny modus
         cin >> neuesLetztesSpiel;
         cout << endl;
-        // eingabe zu lowercase
+        neuesLetztesSpiel = tolower(neuesLetztesSpiel);
 
-        if (neuesLetztesSpiel == 'l' || neuesLetztesSpiel =='L') {
-            SpielstandLaden(spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
+        if (neuesLetztesSpiel == 'l') {
+            SpielstandLaden(spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran); // momentan außer betrieb
             korrekteEingabeSpielstart = true;
-        } else if (neuesLetztesSpiel == 'n' || neuesLetztesSpiel =='N') {
+        } else if (neuesLetztesSpiel == 'n') {
             NeuesSpiel(spieler1, spieler2);
             korrekteEingabeSpielstart = true;
         } else if (neuesLetztesSpiel == 'f') {
-            // platzhalter funny modus
+            // platzhalter funny modus.
         } else {
             cout << "\nUng" << ue << "ltige Eingabe.\nBitte treffen Sie eine Auswahl.\n\n"; // Fehlermeldung bei invalider Eingabe
         }
     }
 
-    cout << "___________________________________________________________________________\n\n";
-    cout << "Sie k" << oe << "nnen Ihren Spielstand jederzeit speichern, indem Sie \"save\" eingeben.\n\n";
-    cout << "___________________________________________________________________________\n\n";
+    cout << "_________________________________________________________________________________________________\n\n";
+    cout << "Sie k" << oe << "nnen jederzeit Ihren Spielstand speichern und das Spiel beenden, indem Sie \"save\" eingeben.\n\n";
+    cout << "_________________________________________________________________________________________________\n\n";
 
     bool Spieler1istDran = false; // notwendig zum den Spielstand zu speichern, logisch eigentlich inkorrekt da spieler1 ja zuerst zieht aber egal
 

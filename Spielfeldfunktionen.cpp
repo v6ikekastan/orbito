@@ -174,30 +174,29 @@ bool checksieg(const string spielfeld[fg][fg]){
 }
 
 void spielzug1(string spielfeld[fg][fg], string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) {
-    string positiony; // strings, da in checkEingabeSpielzug auf "save" kontrolliert und anschließend via stoi() zu int umgewandelt wird
-    string positionx;
+    int positiony;
+    int positionx;
 
     cout << spieler1 << " (XX) ist am Zug. Zeile [space] Spalte eingeben." << endl;
     checkEingabeSpielzug(positiony, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran); // Funktion wird aufgerufen
-    checkEingabeSpielzug(positionx, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
+    // checkEingabeSpielzug(positionx, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
 
-    spielfeld[stoi(positiony)][stoi(positionx)] = "XX";
+    spielfeld[positiony][positionx] = "XX";
 }
 
 void spielzug2(string spielfeld[fg][fg], string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) {
-    if (spieler2 == "computer" || spieler2 == "Computer") { // lowercase
+    if (spieler2 == "computer" || spieler2 == "Computer") {
         cout << spieler2 << " (==) ist am Zug." << endl;
         SpielzugComputer(spielfeld);
-    }
-    else if (spieler2 != "computer" && spieler2 != "Computer") { // lowercase
-        string positiony; // string begründung siehe spielzug1
-        string positionx;
+    } else if (spieler2 != "computer" && spieler2 != "Computer") {
+        int positiony;
+        int positionx;
 
         cout << spieler2 << " (==) ist am Zug. Zeile [space] Spalte eingeben." << endl;
         checkEingabeSpielzug(positiony, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran); // Funktion wird aufgerufen
         checkEingabeSpielzug(positionx, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
 
-        spielfeld[stoi(positiony)][stoi(positionx)] = "==";
+        spielfeld[positiony][positionx] = "==";
     }
 }
 

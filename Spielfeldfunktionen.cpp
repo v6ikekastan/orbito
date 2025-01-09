@@ -17,10 +17,15 @@ void spielfelderstellen(string spielfeld[fg][fg]){
                 }
                 if (spielfeld[i][j] == "=="){
                     ColorCout(1,spielfeld[i][j]);
+                 }
+                if (spielfeld[i][j] == "OO"){
+                    ColorCout(14,spielfeld[i][j]);
                 } cout <<' ';
         } cout << endl;
     } cout << endl;
 }
+
+void spielfeldrotierenUh
 
 void spielfeldrotierenUhr(string spielfeld[fg][fg]){
 

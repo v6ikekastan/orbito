@@ -32,6 +32,13 @@ int checkSiegdiagonal(const string spielfeld[fg][fg]);    /**�berpr�ft, ob e
 
 bool checksieg(const string spielfeld[fg][fg]);   /**kombiniert checkSiegquer(), checkSiegdiagonal() & checkSiegvert()
                                             und gibt so letzendlich den Sieger aus(F)**/
+/**
+* @brief Der optionale Spielzug wird nach Auswahl ausgeführt (Florian)
+* @param[in] spielfeld[fg][fg] zweidimensionales 4x4 Array
+* @param[in] spieler Spielername
+* @param[in] spielernummer Spieler 1 oder 2, um XX und YY zu unterscheiden
+**/
+void steinVerschieben(string spielfeld[fg][fg], string spieler, int spielernummer); 
 
 void spielzug1(string spielfeld[fg][fg], string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran);  /** spielt den ausgew�hlten Spielzug von spieler 1**/
 
@@ -55,13 +62,5 @@ void SpielzugComputerL(string spielfeld[fg][fg]);
 * @param[in] spielfeld[fg][fg] zweidimensionales 4x4 Array
 **/
 void funny_spielfelderstellen(string spielfeld[fg][fg]); 
-
-/**
-* @brief Der optionale Spielzug wird nach Auswahl ausgeführt (Florian)
-* @param[in] spielfeld[fg][fg] zweidimensionales 4x4 Array
-* @param[in] spieler Spielername
-* @param[in] spielernummer Spieler 1 oder 2, um XX und YY zu unterscheiden
-**/
-void steinVerschieben(string spielfeld[fg][fg], string spieler, int spielernummer); 
 
 #endif //SPIELFELDFUNKTIONEN_H

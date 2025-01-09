@@ -12,6 +12,8 @@ const char ue = 129;
 const char ae = 132;
 const char oe = 148;
 const char OE = 153;
+const string pattern1 = "XX";
+const string pattern2 = "==";
 
 int highscoreAbrufen();                     /** Funktion ruft bisherigen highscore aus der Textdatei
                                             "highscore.txt" ab. (F)**/
@@ -96,7 +98,7 @@ void NeuesSpiel(string &spieler1, string &spieler2);
 * @param[in] winstreak Wieviele Spiele gewonnen wurden
 * @param[in] Spieler1istDran true/false ob Spieler 1 dran ist
 **/
-void SpielstandSpeichern(const string &spieler1, const string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran);
+void SpielstandSpeichern(const string &spieler1, const string &spieler2, string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran);
 
 /**
 * @brief Der Spielstand wird aus einer .txt-Datei gelesen (Aven)
@@ -121,7 +123,7 @@ void SpielstandLaden(string &spieler1,string &spieler2, string spielfeldarray[fg
 * @param[in] winstreak Wieviele Spiele gewonnen wurden
 * @param[in] Spieler1istDran true/false ob Spieler 1 dran ist
 **/
-void checkSave(string position, string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran);
+void checkSave(string position, string &spieler1, string &spieler2, string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran);
 
 /**
 * @brief prüft, ob Eingabe vom Benutzer entsprechend des Datentyps stimmt (Laura)
@@ -134,7 +136,7 @@ void checkSave(string position, string &spieler1, string &spieler2, const string
 * @param[in] winstreak Wieviele Spiele gewonnen wurden
 * @param[in] Spieler1istDran true/false ob Spieler 1 dran ist
 **/
-void checkEingabeSpielzug(int &position, string& spieler1, string& spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran);
+void checkEingabeSpielzug(int &position, string& spieler1, string& spieler2, string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran);
 
 /**
 * @brief prüfen ob Spielzug vom Benutzer möglich ist (Laura)

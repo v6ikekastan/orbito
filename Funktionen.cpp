@@ -164,9 +164,6 @@ void NeuesSpiel(string &spieler1, string &spieler2) { // Spielernamen als Refere
     checkEingabe(spieler1);
     cout << "Name von Spieler 2 eingeben: ";
     checkEingabe(spieler2);
-    if (spieler2 == "Computer" || spieler2 == "computer"){
-        cout << "test" << endl;
-    }
 
     //Spielfeld:
     cout << "Startspielfeld:" << endl;

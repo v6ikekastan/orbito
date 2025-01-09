@@ -222,32 +222,85 @@ void SpielzugComputer(string spielfeld[fg][fg]){
 }
 
 void SpielzugComputerL(string spielfeld[fg][fg]){
-// Siegzug
+    string temparray[fg][fg];
+    string temparray2[fg][fg];
+    int positionx;
+    int positiony;
+    for (int i = 0; i < fg; i++){
+        for (int j = 0; j < fg; j++){
+            temparray[i][j] = spielfeld[i][j];
+            }
+        }
+
+
+
+    for (int i = 0; i < fg; i++){
+        for (int j = 0; j < fg; j++){
+            temparray2[i][j] = to_string(i) + to_string(j);
+            }
+        }
+// Siegzug oder Blockzug 1
+    spielfeldrotierenUhr(temparray);
     for (int i = 0; i < fg; i++) {
         for (int j = 0; j < fg; j++) {
-            if (spielfeld[i][j] == to_string(i) + to_string(j)) {
-                spielfeld[i][j] = "==";
-                /*if (checkSieg(spielfeld)) {
-                    cout << "Computer waehlt Feld " << i << j << endl;
+            if (temparray[i][j] == to_string(i) + to_string(j)) {
+                temparray[i][j] = "==";
+                temparray2[i][j] = "==";
+                if (checksieg(temparray)) {
+                    spielfeldrotierenGegenUhr(temparray2);
+
+                    for (int f = 0; f < fg; f++) {
+                        for (int g = 0; g < fg; g++) {
+                                if (temparray2[f][g] == "=="){
+                                    spielfeld[f][g] = temparray2[f][g];
+                                    positionx = f;
+                                    positiony = g;
+                                    }
+                                }
+                            }
+                    cout << "Computer waehlt Feld " << positionx << positiony << endl;
+                    cout << "und rotiert mit dem Uhrzeigersinn." << endl;
+
                     return;
-                    }*/
-                spielfeld[i][j] = to_string(i) + to_string(j);
+                    }
+                temparray[i][j] = to_string(i) + to_string(j);
+                temparray2[i][j] = to_string(i) + to_string(j);
                 }
             }
         }
-// Blockzug
+// Siegzug oder Blockzug 2
+    spielfeldrotierenGegenUhr(temparray);
     for (int i = 0; i < fg; i++) {
         for (int j = 0; j < fg; j++) {
-            if (spielfeld[i][j] == to_string(i) + to_string(j)) {
-                spielfeld[i][j] = "XX";
-                /*if (checkSieg(spielfeld)) {
-                    cout << "Computer waehlt Feld " << i << j << endl;
+            if (temparray[i][j] == to_string(i) + to_string(j)) {
+                temparray[i][j] = "==";
+                temparray2[i][j] = "==";
+                if (checksieg(temparray)) {
+                    spielfeldrotierenUhr(temparray2);
+
+                    for (int f = 0; f < fg; f++) {
+                        for (int g = 0; g < fg; g++) {
+                                if (temparray2[f][g] == "=="){
+                                    spielfeld[f][g] = temparray2[f][g];
+                                    positionx = f;
+                                    positiony = g;
+                                    }
+                                }
+                            }
+                    cout << "Computer waehlt Feld " << positionx << positiony << endl;
+                    cout << "und rotiert gegen den Uhrzeigersinn." << endl;
+
                     return;
-                    }*/
-                spielfeld[i][j] = to_string(i) + to_string(j);
+                    }
+                temparray[i][j] = to_string(i) + to_string(j);
+                temparray2[i][j] = to_string(i) + to_string(j);
                 }
             }
         }
+
+
+
+
 // Zufälliger Spielzug
     int i;
     int j;
@@ -261,12 +314,23 @@ void SpielzugComputerL(string spielfeld[fg][fg]){
         if (spielfeld[i][j] == to_string(i) + to_string(j)){
             spielfeld[i][j] = "==";
             freiesFeld = true;
-            cout << "Computer waehlt Feld " << i << j << endl;
-            return;
+            int rotation;
+            rotation = rand() % 2 + 1;
+            if (rotation == 1){
+                cout << "Computer waehlt Feld " << i << j << endl;
+                cout << "und rotiert gegen den Uhrzeigersinn." << endl;
+                spielfeldrotierenGegenUhr(spielfeld);
+                return;
+            }
+            else {
+                cout << "Computer waehlt Feld " << i << j << endl;
+                cout << "und rotiert im Uhrzeigersinn." << endl;
+                spielfeldrotierenUhr(spielfeld);
+                return;
+            }
         }
-    }
+   }
 }
-
 
 void funny_spielfelderstellen(string spielfeld[fg][fg]){
       for (int i = 0; i < fg; i++){

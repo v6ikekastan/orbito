@@ -112,6 +112,7 @@ int checkSiegDiagonal2(string spielfeldarray[fg][fg], string pattern) {
 
 bool checkTotalSieg(string arr[fg][fg], string pattern1, string pattern2) {
     if (checkSiegCol(arr, pattern1) || checkSiegRow(arr, pattern1) || checkSiegDiagonal1(arr, pattern1) || checkSiegDiagonal2(arr, pattern1) || checkSiegCol(arr, pattern2) || checkSiegRow(arr, pattern2) || checkSiegDiagonal1(arr, pattern2) || checkSiegDiagonal2(arr, pattern2)) {
+        cout << "\n\nHerzlichen Gl" << ue << "ckwunsch! Das Spiel wurde gewonnen!\n\n!;
         return true;
     }
 }

@@ -173,7 +173,7 @@ void NeuesSpiel(string &spieler1, string &spieler2) { // Spielernamen als Refere
     spielfelderstellen(spielfeldarray);
 }
 
-void SpielstandSpeichern(const string &spieler1, const string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) { // & referenz nur bei spielernamen, da a) strings relativ groß sind (vgl. int) und b) da arrays automatisch wie eine referenz behandelt werden
+void SpielstandSpeichern(const string &spieler1, const string &spieler2, string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) { // & referenz nur bei spielernamen, da a) strings relativ groß sind (vgl. int) und b) da arrays automatisch wie eine referenz behandelt werden
 
     ofstream speichern;
 
@@ -286,7 +286,7 @@ void SpielstandLaden(string &spieler1, string &spieler2, string spielfeldarray[f
     cout << "Ist Spieler 1 dran? " << (Spieler1istDran ? "ja" : "nein") << endl;
 }
 
-void checkSave(string position, string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) {
+void checkSave(string position, string &spieler1, string &spieler2, string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) {
 
     int strLaenge = position.length(); // transformiert string zu lowercase
     for (int i = 0; i < strLaenge; i++) {
@@ -299,7 +299,7 @@ void checkSave(string position, string &spieler1, string &spieler2, const string
     } else;
 }
 
-void checkEingabeSpielzug(int &position, string& spieler1, string& spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) {
+void checkEingabeSpielzug(int &position, string& spieler1, string& spieler2, string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) {
 
     while (true) {
         if (!(cin >> position)) { // Input was successfully read as an int

@@ -45,7 +45,9 @@ int main(){
         } else if (neuesLetztesSpiel == 'f') {
             // platzhalter funny modus.
         } else {
-            cout << "\nUng" << ue << "ltige Eingabe.\nBitte treffen Sie eine Auswahl.\n\n"; // Fehlermeldung bei invalider Eingabe
+            cout << "Ung" << ue << "ltige Eingabe, bitte erneut versuchen.\n"; // Fehlermeldung bei invalider Eingabe
+            cin.clear();
+            cin.sync();
         }
     }
 

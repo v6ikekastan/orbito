@@ -24,6 +24,49 @@ void highscoreEintragen(int nhighscore);    /** Funktion trägt neuen highscore 
 
 void ColorCout(int color, string text);     /** gibt Text in bestimmter Farbe wieder**/
 
+
+/**
+* @brief überprüft ob in einer Reihe gewonnen wurde (Aven)
+* @param[in] spielfeldarray Spielfeld
+* @param[in] pattern Spielstein ("XX" oder "==")
+* @return int ob gewonnen wurde
+**/
+int checkSiegRow(string spielfeldarray[fg][fg], string pattern);
+
+/**
+* @brief überprüft ob in einer Spalte gewonnen wurde (Aven)
+* @param[in] spielfeldarray Spielfeld
+* @param[in] pattern Spielstein ("XX" oder "==")
+* @return int ob gewonnen wurde
+**/
+int checkSiegCol(string spielfeldarray[fg][fg], string pattern);
+
+/**
+* @brief überprüft ob in Diagonal (von oben links nach unten rechts) gewonnen wurde (Aven)
+* @param[in] spielfeldarray Spielfeld
+* @param[in] pattern Spielstein ("XX" oder "==")
+* @return int ob gewonnen wurde
+**/
+int checkSiegDiagonal1(string spielfeldarray[fg][fg], string pattern);
+
+/**
+* @brief überprüft ob in Diagonal (von unten links nach oben rechts) gewonnen wurde (Aven)
+* @param[in] spielfeldarray Spielfeld
+* @param[in] pattern Spielstein ("XX" oder "==")
+* @return int ob gewonnen wurde
+**/
+int checkSiegDiagonal2(string spielfeldarray[fg][fg], string pattern);
+
+/**
+* @brief überprüft ob gewonnen wurde, kombiniert vorherige Funktionen (Aven)
+* @param[in] spielfeldarray Spielfeld
+* @param[in] pattern1 Spielstein "XX"
+* @param[in] pattern2 Spielstein "=="
+* @return bool true/false ob gewonnen wurde
+**/
+bool checkTotalSieg(string arr[fg][fg], string pattern1, string pattern2);
+
+
 void clearConsole();                        /** löscht Text auf der Konsole **/
 
 /**

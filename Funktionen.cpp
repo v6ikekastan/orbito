@@ -274,6 +274,41 @@ bool checkSpielzug(string spielfeld[fg][fg], int positiony, int positionx){
     }
 }
 
+void extraStein(string spielfeld[4][4], int &zugCounter){
+
+    string temparray [fg][fg]; //FLO Zeile 279-284
+    for (int i = 0; i < fg; i++) {
+        for (int j = 0; j < fg; j++) {
+            temparray[i][j] = spielfeld[i][j];
+        }
+    }
+
+    zugCounter++; // Erhöhe den Zähler für die Anzahl der Züge
+    if(zugCounter == 1){
+        bool placed = false;  // Flag, um zu überprüfen, ob der Stein platziert wurde
+
+        while (!placed) {
+            int randY = rand() % fg;  // Zufällige Zeile
+            int randX = rand() % fg;  // Zufällige Spalte
+
+            if (temparray[randY][randX] != "XX" && temparray[randY][randX] != "OO" && temparray[randY][randX] != "==") { // Überprüfen, ob das Feld leer ist
+                temparray[randY][randX] = "OO"; // setzt den Stein "OO"
+                cout << "Zus" << ae << "tzlicher Stein (OO) wurde an zuf" << ae << "lliger Stelle (" << randY << ", " << randX << ") gesetzt!" << endl;
+                placed = true;  // Stein wurde erfolgreich platziert
+            }
+        }
+        zugCounter = 0; // Setze den Zähler zurück, um nach dem nächsten vierten Zug erneut einen Stein hinzuzufügen
+    }
+
+    for (int i = 0; i < fg; i++) {
+        for (int j = 0; j < fg; j++) {
+            spielfeld[i][j] = temparray[i][j];
+        }
+    }
+
+}
+
+
 void FunnyModus(string &spieler1, string &spieler2, string spielfeldarray[fg][fg]) {
 
     cout << "Name von Spieler 1 eingeben: ";
@@ -292,7 +327,19 @@ void FunnyModus(string &spieler1, string &spieler2, string spielfeldarray[fg][fg
     cout << "In diesem Modus ist speichern nicht m" << oe << "glich. Vielen Dank f" << ue << "r Ihr Verst" << ae << "ndnis.\n\n";
     cout << "_____________________________________________________________________________\n\n";
 
-    // Spielablauf
+    bool checksiegStatus, Spieler1istDran;
+    int winstreak;
+    int zugCounter = 0;
+    string spielfeld[fg][fg];
+
+        spielzug1(spielfeldarray, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran, zugCounter);
+        spielfelderstellen(spielfeldarray);
+        spielfeldrotierenUhr(spielfeldarray);
+        spielzug2(spielfeldarray, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
+        spielfelderstellen(spielfeldarray);
+        spielfeldrotierenUhr(spielfeldarray);
+        extraStein(spielfeld, zugCounter);
+
 
     // Interruptions beliebig
 }

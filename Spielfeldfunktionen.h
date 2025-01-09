@@ -24,14 +24,6 @@ void spielfeldrotierenUhr(string spielfeld[fg][fg]);
 **/
 void spielfeldrotierenGegenUhr(string spielfeld[fg][fg]);
 
-int checkSiegquer(const string spielfeld[fg][fg]);        /**�berpr�ft, ob ein Spieler horizontal gewonnen hat (F)**/
-
-int checkSiegvert(const string spielfeld[fg][fg]);        /**�berpr�ft, ob ein Spieler vertikal gewonnen hat (F)**/
-
-int checkSiegdiagonal(const string spielfeld[fg][fg]);    /**�berpr�ft, ob ein Spieler diagonal gewonnen hat (F)**/
-
-bool checksieg(const string spielfeld[fg][fg]);   /**kombiniert checkSiegquer(), checkSiegdiagonal() & checkSiegvert()
-                                            und gibt so letzendlich den Sieger aus(F)**/
 /**
 * @brief Der optionale Spielzug wird nach Auswahl ausgeführt (Florian)
 * @param[in] spielfeld[fg][fg] zweidimensionales 4x4 Array

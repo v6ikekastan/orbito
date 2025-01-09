@@ -173,12 +173,101 @@ bool checksieg(const string spielfeld[fg][fg]){
     }
 }
 
+void steinVerschieben(string spielfeld[fg][fg], string spieler, int spielernummer) {
+    int x = 0;
+    int y = 0;
+    string richtung;
+    bool w = true;
+    string temparray[fg][fg];
+    char ausfuehrung;
+    int begrenzung;
+    begrenzung = 0;
+
+    cout << "Optionaler Spielzug: orthogonale Verschiebung eines gegnerischen Steins." << endl;
+    cout << "Fuer Ausfuehrung beliebigen Buchstaben eingeben. Bei abbruch beliebige Zahl." << endl;
+    cin >> ausfuehrung;
+    if (!isalpha(ausfuehrung)){
+        cout << "Das Spiel wird ohne optionalen Spielzug fortgesetzt." << endl;
+        return;
+    }
+
+    // Kopiere das Spielfeld ins temporäre Array
+    for (int i = 0; i < fg; i++) {
+        for (int j = 0; j < fg; j++) {
+            temparray[i][j] = spielfeld[i][j];
+        }
+    }
+
+    // Position und Richtung des Steins einlesen
+    while (w == true) {
+        begrenzung = begrenzung + 1;
+        if (begrenzung == 7){
+            cout << "Das Spiel wird ohne optionalem Spielzug fortgesetzt. (zu viele Fehlversuche)" << endl;
+            return;
+        }
+        cout << "Gib die aktuelle Position des zu verschiebenden Steins (x y) an: ";
+        cin >> x >> y;
+
+        // Überprüfen, ob die aktuelle Position gültig ist
+        if (x < 0 || x >= fg || y < 0 || y >= fg || temparray[x][y] == to_string(x) + to_string(y)) {
+            cout << "Ungueltige Position!" << endl;
+            continue; // Neustart der Schleife
+        }
+
+        if (spielernummer == 1 && temparray[x][y] == "XX"){
+            cout << "Es duerfen nur gegnerische Steine verschoben werden." << endl;
+            continue;
+        }
+
+        if (spielernummer == 2 && temparray[x][y] == "=="){
+            cout << "Es duerfen nur gegnerische Steine verschoben werden." << endl;
+            continue;
+        }
+
+        cout << "Gib die Verschieberichtung an (oben, unten, links, rechts): ";
+        cin >> richtung;
+
+        // Bestimmen der neuen Position basierend auf der Richtung
+        int newX = x, newY = y;
+        if (richtung == "oben" || richtung == "Oben" || richtung == "o" || richtung == "O" || richtung == "w") {
+            newX = x - 1;
+        } else if (richtung == "unten" || richtung == "Unten" || richtung == "u" || richtung == "U" || richtung == "s") {
+            newX = x + 1;
+        } else if (richtung == "links" || richtung == "Links" || richtung == "L" || richtung == "l" || richtung == "a") {
+            newY = y - 1;
+        } else if (richtung == "rechts" || richtung == "Rechts" || richtung == "r" || richtung == "R" || richtung == "d") {
+            newY = y + 1;
+        } else {
+            cout << "Ungueltige Richtung!" << endl;
+            continue; // Neustart der Schleife
+        }
+        // Überprüfen, ob die neue Position gültig ist
+        if (newX < 0 || newX >= fg || newY < 0 || newY >= fg || spielfeld[newX][newY] != to_string(newX) + to_string(newY)) {
+            cout << "Ungueltige Verschiebung!" << endl;
+            continue; // Neustart der Schleife
+        }
+        // Stein verschieben
+        temparray[newX][newY] = temparray[x][y];
+        temparray[x][y] = to_string(x) + to_string(y); // Leeren Platz markieren
+
+        // Schleife beenden
+        w = false;
+    }
+
+    // Spielfeld aktualisieren
+    for (int i = 0; i < fg; i++) {
+        for (int j = 0; j < fg; j++) {
+            spielfeld[i][j] = temparray[i][j];
+        }
+    }
+}
+
 void spielzug1(string spielfeld[fg][fg], string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) {
     int positiony, positionx;
 
     cout << spieler1 << " (XX) ist am Zug." << endl;
     steinVerschieben(spielfeld, spieler1, 1);
-    cout <<"Zeile [space] Spalte eingeben." << endl;
+    cout << "Zeile [space] Spalte eingeben." << endl;
 
     do { // Wiederholen, bis der Spieler einen gültigen Zug tätigt
         checkEingabeSpielzug(positiony, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
@@ -364,105 +453,6 @@ void funny_spielfelderstellen(string spielfeld[fg][fg]){
                 }
 
         }
-    }
-    cout << endl;
-}
-
-void steinVerschieben(string spielfeld[fg][fg], string spieler, int spielernummer) {
-    int x = 0;
-    int y = 0;
-    string richtung;
-    bool w = true;
-    string temparray[fg][fg];
-    char ausfuehrung;
-    int begrenzung;
-    begrenzung = 0;
-
-
-    cout << "Optionaler Spielzug: orthogonale Verschiebung eines gegnerischen Steins." << endl;
-    cout << "Fuer Ausfuehrung beliebigen Buchstaben eingeben. Bei abbruch beliebige Zahl." << endl;
-    cin >> ausfuehrung;
-    if (!isalpha(ausfuehrung)){
-        cout << "Das Spiel wird ohne optionalen Spielzug fortgesetzt." << endl;
-        return;
-    }
-
-
-    // Kopiere das Spielfeld ins temporäre Array
-    for (int i = 0; i < fg; i++) {
-        for (int j = 0; j < fg; j++) {
-            temparray[i][j] = spielfeld[i][j];
-        }
-    }
-
-    // Position und Richtung des Steins einlesen
-    while (w == true) {
-        begrenzung = begrenzung + 1;
-        if (begrenzung == 7){
-            cout << "Das Spiel wird ohne optionalem Spielzug fortgesetzt. (zu viele Fehlversuche)" << endl;
-            return;
-        }
-        cout << "Gib die aktuelle Position des zu verschiebenden Steins (x y) an: ";
-        cin >> x >> y;
-
-        // Überprüfen, ob die aktuelle Position gültig ist
-        if (x < 0 || x >= fg || y < 0 || y >= fg || temparray[x][y] == to_string(x) + to_string(y)) {
-            cout << "Ungueltige Position!" << endl;
-            continue; // Neustart der Schleife
-        }
-
-        if (spielernummer == 1 && temparray[x][y] == "XX"){
-            cout << "Es duerfen nur gegnerische Steine verschoben werden." << endl;
-            continue;
-        }
-
-        if (spielernummer == 2 && temparray[x][y] == "=="){
-            cout << "Es duerfen nur gegnerische Steine verschoben werden." << endl;
-            continue;
-        }
-
-        cout << "Gib die Verschieberichtung an (oben, unten, links, rechts): ";
-        cin >> richtung;
-
-
-
-
-
-        // Bestimmen der neuen Position basierend auf der Richtung
-        int newX = x, newY = y;
-        if (richtung == "oben" || richtung == "Oben" || richtung == "o" || richtung == "O" || richtung == "w") {
-            newX = x - 1;
-        } else if (richtung == "unten" || richtung == "Unten" || richtung == "u" || richtung == "U" || richtung == "s") {
-            newX = x + 1;
-        } else if (richtung == "links" || richtung == "Links" || richtung == "L" || richtung == "l" || richtung == "a") {
-            newY = y - 1;
-        } else if (richtung == "rechts" || richtung == "Rechts" || richtung == "r" || richtung == "R" || richtung == "d") {
-            newY = y + 1;
-        } else {
-            cout << "Ungueltige Richtung!" << endl;
-            continue; // Neustart der Schleife
-        }
-
-        // Überprüfen, ob die neue Position gültig ist
-        if (newX < 0 || newX >= fg || newY < 0 || newY >= fg || spielfeld[newX][newY] != to_string(newX) + to_string(newY)) {
-            cout << "Ungueltige Verschiebung!" << endl;
-            continue; // Neustart der Schleife
-        }
-
-        // Stein verschieben
-        temparray[newX][newY] = temparray[x][y];
-        temparray[x][y] = to_string(x) + to_string(y); // Leeren Platz markieren
-
-        // Schleife beenden
-        w = false;
-
-    }
-
-    // Spielfeld aktualisieren
-    for (int i = 0; i < fg; i++) {
-        for (int j = 0; j < fg; j++) {
-            spielfeld[i][j] = temparray[i][j];
-        }
-    }
+    } cout << endl;
 }
 

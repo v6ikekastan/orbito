@@ -125,18 +125,18 @@ void SpielstandSpeichern(const string &spieler1, const string &spieler2, const s
     // spielernamen speichern, hier noch mit manueller eingabe der namen
     speichern << "Spieler 1:\n" << spieler1 << endl;
     speichern << "Spieler 2:\n" << spieler2 << endl;
-    cout << "\n\nSpielernamen wurden gespeichert!\n";
+    cout << "\n\n Spielernamen wurden gespeichert!\n";
 
     // spielfeldarray speichern
     speichern << "Spielfeld:\n";
     for (int i = 0; i < 4; i++) { // äußere schleife für reihen
         for (int j = 0; j < 4; j++) { // innere schleife für zeilen
-            speichern << spielfeldarray[fg][fg];
+            speichern << spielfeldarray[i][j];
             if (j < 3) speichern << " "; // fügt ein leerzeichen nach jedem index ein (außer die ganz rechts)
         }
         speichern << endl; // fügt einen zeilenumbruch nach jeder zeile ein
     }
-    cout << "Spielfeld wurde gespeichert!\n";
+    cout << " Spielfeld wurde gespeichert!\n";
 
     // bool checksiegStatus speichern
     checksiegStatus = checksieg(spielfeldarray);
@@ -150,11 +150,11 @@ void SpielstandSpeichern(const string &spieler1, const string &spieler2, const s
         winstreak++;
     }
     speichern << "Winstreak:\n" << winstreak << endl;
-    cout << "Winstreak wurde gespeichert!\n";
+    cout << " Winstreak wurde gespeichert!\n";
 
     // bool Spieler1istDran speichernn
     speichern << "Ist Spieler 1 dran?:\n" << (Spieler1istDran ? true : false) << endl; // Spieler1istDran wird als ja oder nein gespeichert
-    cout << "Nächster Spieler wurde gespeichernt!\n";
+    cout << " N" << ae << "chster Spieler wurde gespeichernt!\n";
 
     speichern.close();
 }
@@ -165,38 +165,27 @@ void SpielstandLaden(string &spieler1, string &spieler2, string spielfeldarray[f
 
     ifstream laden;
 
-
     laden.open(dateiname);
 
     if (!laden) { // spielstand.txt konnte nicht geöffnet werden
         cerr << "Fehler beim " << OE << "ffnen der Datei \"" << dateiname << "\".\n\n"; // sends data to the standart error stream, heißt der text wird nicht verarbeitet wie ein standart output, sondern direkt auf die konsole geschrieben
     }
-// laden funktion in überarbeitung
 
     getline(laden, dummy); // "Spieler 1:\n" überspringen
     getline(laden, spieler1);
 
     getline(laden, dummy); // "Spieler 2:\n" überspringen
     getline(laden, spieler2);
-    cout << "test";
 
-    /* getline(laden, dummy); // "Spielfeld:\n" überspringen
+    getline(laden, dummy); // "Spielfeld:\n" überspringen
     for (int i = 0; i < 4; i++) { // äußere schleife für reihen
         for (int j = 0; j < 4; j++) { // innere schleife für zeilen
-            laden >> spielfeldarray[fg][fg];
+            laden >> spielfeldarray[i][j];
         }
-    } */
+    }
 
     getline(laden, dummy); // "Wurde das Spiel schon gewonnen?: " überspringen
     laden >> checksiegStatus;
-    /* laden >> temp; // "ja" und "nein" zurück zu bool konvertieren
-     if (temp == "ja") {
-        checksiegStatus = true;
-    } else if (temp == "nein") {
-        checksiegStatus = false;
-    } else {
-        cerr << "Fehler: Ung" << ue << "ltiger Wert für 'Wurde das Spiel schon gewonnen?'.\n";
-    } */
     laden.ignore(); // zeilenumbruch überspringen
 
     getline(laden, dummy); // "Winstreeak: " überspringen
@@ -204,67 +193,64 @@ void SpielstandLaden(string &spieler1, string &spieler2, string spielfeldarray[f
 
     getline(laden, dummy); // "Ist Spieler 1 dran? " überspringen
     laden >> Spieler1istDran;
-    /*laden >> temp; // "ja" und "nein" zurück zu bool konvertieren
-     if (temp == "ja") {
-        Spieler1istDran = true;
-    } else if (temp == "nein") {
-        Spieler1istDran = false;
-    } else {
-        cerr << "Fehler: Ung" << ue << "ltiger Wert für 'Ist Spieler 1 dran?'.\n";
-    } */
     laden.ignore(); // zeilenumbruch überspringen
 
     // Zur Kontrolle alle Werte ausgeben
+    cout << "Zuletzt gespeichert:\n";
+    cout << "_________________________________________________________________________________________________\n\n";
+
     cout << "Spieler 1: " << spieler1 << endl;
     cout << "Spieler 2: " << spieler2 << "\n\n";
+
     cout << "Spielfeld:\n";
     for (int i = 0; i < fg; ++i) {
         for (int j = 0; j < fg; ++j) {
-            cout << spielfeldarray[fg][fg] << " ";
+            cout << spielfeldarray[i][j] << " ";
         }
         cout << endl;
-    }
-    cout << "Wurde das Spiel schon gewonnen? " << (checksieg ? "ja" : "nein") << endl;
-    cout << "Winstreak: " << winstreak << endl;
-    cout << "Ist Spieler 1 dran? " << (Spieler1istDran ? "ja" : "nein") << endl;
+    } cout << endl;
 
+    cout << "Wurde das Spiel schon gewonnen? " << (checksieg ? "ja" : "nein") << "\n\n";
+    cout << "Winstreak: " << winstreak << "\n\n";
+    cout << "Ist Spieler 1 dran? " << (Spieler1istDran ? "ja" : "nein") << endl;
 }
 
-void checkSave(int &position, string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) {
+void checkSave(string position, string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) {
 
-    string positionSaveCheck = to_string(position);
-    cout << "to string \n";
-
-    int strLaenge = positionSaveCheck.length(); // transformiert string zu lowercase
-    cout << "länge\n";
+    int strLaenge = position.length(); // transformiert string zu lowercase
     for (int i = 0; i < strLaenge; i++) {
-        positionSaveCheck[i] = tolower(positionSaveCheck[i]); // geht jeden char des strings bis zum ende durch
-        cout << "klein\n";
+        position[i] = tolower(position[i]); // geht jeden char des strings bis zum ende durch
     }
 
-    if (positionSaveCheck == "save") {
-        cout << "save\n";
+    if (position == "save") {
         SpielstandSpeichern(spieler1, spieler2, spielfeldarray, checksieg, winstreak, Spieler1istDran);
         exit(0);
-    } else {cout << "else1\n";}
+    } else;
 }
 
 void checkEingabeSpielzug(int &position, string& spieler1, string& spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) {
 
-    while(true){
-        cin >> position;
-        cout << "hallo eingabe\n";
+    while (true) {
+        if (!(cin >> position)) { // Input was successfully read as an int
+            cin.clear(); // Clear the error flag
+            string checkInput;
+            cin >> checkInput; // Read the failed input as a string
 
-        checkSave(position, spieler1, spieler2, spielfeldarray, checksieg, winstreak, Spieler1istDran);
-        cout << "fertig\n";
+            // überprüft ob die eingabe "save" ist
+            checkSave(CheckInput, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
 
-        if(cin.fail() || position < 0 || position > 3){ // prüft ob Benutzer einen Wert eingegeben hat, der nicht zum Datentyp von variable passt
-            cout << "Ung" << ue << "ltige Eingabe, bitte erneut versuchen." << endl;
-            cout << "neinein\n";
-            cin.clear();   // löscht Fehlerinformation
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ungütige Eingabe
-            cout << ":P\n";
-        } else {cout << "ELSE\n";} // gültige Eingabe, Schleife verlassen
+            // wenn input nicht "save" ist, dann ungültig
+            cout << "Ung" << ue << "ltige Eingabe, bitte erneut versuchen.\n";
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Clear the remaining invalid input
+        } else {
+            if(cin.fail() || position < 0 || position > 3){ // prüft ob Benutzer einen Wert eingegeben hat, der nicht zum Datentyp von variable passt
+                cout << "Ung" << ue << "ltige Eingabe, bitte erneut versuchen." << endl;
+                cin.clear();   // löscht Fehlerinformation
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ungütige Eingabe
+            } else {
+                break; // gültige Eingabe, Schleife verlassen
+            }
+        }
     }
 }
 

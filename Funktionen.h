@@ -68,7 +68,7 @@ void SpielstandLaden(string &spieler1, string &spieler2, string spielfeldarray[f
 
 /**
 * @brief Formatiert die Eingabe zu einem string und sucht nach "save" (Aven)
-* @param[in] position Feld das vom Benutzer ausgewählt wird
+* @param[in] position Eingabe des Spielers: Feld oder save
 // alle folgenden Parameter sind ausschlielich für SpielstandSpeichern relevant
 * @param[in] spieler1 Name des ersten Spielers
 * @param[in] spieler2 Name des zweiten Spielers
@@ -77,7 +77,7 @@ void SpielstandLaden(string &spieler1, string &spieler2, string spielfeldarray[f
 * @param[in] winstreak Wieviele Spiele gewonnen wurden
 * @param[in] Spieler1istDran true/false ob Spieler 1 dran ist
 **/
-void checkSave(int &position, string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran);
+void checkSave(string position, string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran);
 
 /**
 * @brief prüft, ob Eingabe vom Benutzer entsprechend des Datentyps stimmt (Laura)

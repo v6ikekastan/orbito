@@ -9,6 +9,7 @@
 #include <limits>
 #include <cctype>
 #include <ctime>
+#include <cstring>
 
 using namespace std;
 
@@ -56,6 +57,65 @@ void ColorCout(int color, string text){
    cout << text;
    SetConsoleTextAttribute(handle, 7);
 }
+
+int checkSiegRow(string spielfeldarray[fg][fg], string pattern) {
+    for (int row = 0; row <=3; ++row) {
+        if ((spielfeldarray[row][0]).compare(pattern) == 0) {
+            for (int match = 0; (spielfeldarray[row][match].compare(pattern) == 0); ++match) {
+                if (match == 3) {
+                    cout << "test win"; // set bool oder so
+                    return 1; // ausmachen oder so
+                }
+            }
+        }
+    }
+}
+
+int checkSiegCol(string spielfeldarray[fg][fg], string pattern) {
+    for (int col = 0; col <=3; ++col) {
+        if ((spielfeldarray[0][col]).compare(pattern) == 0) {
+            for (int match = 0; (spielfeldarray[match][col].compare(pattern) == 0); ++match) {
+                if (match == 3) {
+                    cout << "test win 2"; // set bool oder so
+                    return 1;    // ausmachen oder so
+                }
+            }
+        }
+    }
+}
+
+int checkSiegDiagonal1(string spielfeldarray[fg][fg], string pattern) {
+    for (int i = 0; i <=3; ++i) {
+        if ((spielfeldarray[i][i]).compare(pattern) == 0) {
+            for (int match = 0; (spielfeldarray[i][match].compare(pattern) == 0); ++match) {
+                if (match == 3) {
+                    cout << "test win 3"; // set bool oder so
+                    return 1; // ausmachen oder so
+                }
+            }
+        }
+    }
+}
+
+int checkSiegDiagonal2(string spielfeldarray[fg][fg], string pattern) {
+    for (int j = 0; j <=3; ++j) {
+        if ((spielfeldarray[0][j]).compare(pattern) == 0) {
+            for (int match = 0; (spielfeldarray[match][j].compare(pattern) == 0); ++match) {
+                if (match == 3) {
+                    cout << "test win 4"; // set bool oder so
+                    return 1;    // ausmachen oder so
+                }
+            }
+        }
+    }
+}
+
+bool checkTotalSieg(string arr[fg][fg], string pattern1, string pattern2) {
+    if (checkSiegCol(arr, pattern1) || checkSiegRow(arr, pattern1) || checkSiegDiagonal1(arr, pattern1) || checkSiegDiagonal2(arr, pattern1) || checkSiegCol(arr, pattern2) || checkSiegRow(arr, pattern2) || checkSiegDiagonal1(arr, pattern2) || checkSiegDiagonal2(arr, pattern2)) {
+        return true;
+    }
+}
+
 
 void clearFile() {
 

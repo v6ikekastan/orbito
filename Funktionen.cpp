@@ -70,25 +70,28 @@ void clearFile() {
 }
 
 void checkEingabe(string &spielername) {
-    while (true) {
-        cin >> spielername;
-        bool valid = true;
-        for (char c : spielername) {
-            if (!isalpha(c)) { // prüft ob jedes Zeichen ein Buchstabe ist
-                valid = false;
-                break;
+    while (true) {  // Endlos-Schleife, bis eine gültige Eingabe erfolgt
+        cin >> spielername; // Eingabe des Spielernamens durch den Nutzer
+
+        bool valid = true; // Überprüfung ob die Eingabe gültig ist
+
+        for (char c : spielername) { // Schleife, um jedes Zeichen im Spielernamen zu prüfen
+            if (!isalpha(c)) { // Überprüft, ob das Zeichen kein Buchstabe ist
+                valid = false; // Falls ein Zeichen ungültig ist wird bool valid auf false gesetzt
+                break; // Abbruch der Überprüfung wenn ein ungültiges Zeichen gefunden wurde
             }
         }
-        if (!valid || spielername.empty() || cin.fail()) {
-            cout << "Ung" << ue << "ltige Eingabe, bitte erneut versuchen." << endl;
-            cin.clear();   // löscht Fehlerinformation
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ungültige Eingabe
+        
+        if (!valid || spielername.empty() || cin.fail()) { // Bedingungen um festzustellen ob die Eingabe ungültig ist
+            cout << "Ung" << ue << "ltige Eingabe, bitte erneut versuchen." << endl; 
+
+            cin.clear();   // Setzt den Fehlerstatus des Eingabestreams zurück
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Überspringt alle verbleibenden Zeichen in der Eingabezeile, um sie zu ignorieren
         } else {
-            break; // gültige Eingabe, Schleife verlassen
+            break; // Schleife beendet falls die Eingabe gültig ist 
         }
     }
 }
-
 void NeuesSpiel(string &spieler1, string &spieler2) { // Spielernamen als Referenz, sodass Änderungen aus der Funktion auch ins main übernommen werden
 
     string spielfeldarray[fg][fg]{

@@ -37,7 +37,7 @@ int main(){
         neuesLetztesSpiel = tolower(neuesLetztesSpiel);
 
         if (neuesLetztesSpiel == 'l') {
-            SpielstandLaden(spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran); // momentan außer betrieb
+            SpielstandLaden(spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
             korrekteEingabeSpielstart = true;
         } else if (neuesLetztesSpiel == 'n') {
             NeuesSpiel(spieler1, spieler2);
@@ -54,6 +54,9 @@ int main(){
     cout << "_________________________________________________________________________________________________\n\n";
 
     bool Spieler1istDran = false; // notwendig zum den Spielstand zu speichern, logisch eigentlich inkorrekt da spieler1 ja zuerst zieht aber egal
+
+    cout << "HIER WIRD GESPEICHERT!!\n";
+    SpielstandSpeichern(spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
 
     for (int i = 0; i < 8; i++){
 

@@ -179,7 +179,9 @@ void spielzug1(string spielfeld[fg][fg], string &spieler1, string &spieler2, con
 
     cout << spieler1 << " (XX) ist am Zug. Zeile [space] Spalte eingeben." << endl;
     checkEingabeSpielzug(positiony, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran); // Funktion wird aufgerufen
-    // checkEingabeSpielzug(positionx, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
+    cout << "hallo, spielzug1-y\n";
+    checkEingabeSpielzug(positionx, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
+    cout << "hallo, spielzug1-x\n";
 
     spielfeld[positiony][positionx] = "XX";
 }

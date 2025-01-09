@@ -1,10 +1,15 @@
-Spieler 1: 
-Spieler 2: 
+Spieler 1:
+avenaventest
+Spieler 2:
+avenaventestest
 Spielfeld:
    
    
    
    
-Wurde das Spiel schon gewonnen?0
-Winstreak: 0
-Ist Spieler 1 dran?: 0
+Wurde das Spiel schon gewonnen?
+0
+Winstreak:
+0
+Ist Spieler 1 dran?:
+0

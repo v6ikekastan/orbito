@@ -96,7 +96,7 @@ void checkEingabeSpielzug(int &position, string& spieler1, string& spieler2, con
 * @brief prüfen ob Spielzug vom Benutzer möglich ist (Laura)
 * @param [in] feld das vom Benutzer ausgewählt wird
 **/
-bool checkSpielzug(const string spielfeld[fg][fg], int positiony, int positionx); //const weil es nur Spielfeld liest
+bool checkSpielzug(const string spielfeld[fg][fg], int positiony, int positionx); 
 
 // funny modus
 

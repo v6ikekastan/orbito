@@ -181,6 +181,9 @@ void spielzug1(string spielfeld[fg][fg], string &spieler1, string &spieler2, con
     checkEingabeSpielzug(positiony, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran); // Funktion wird aufgerufen
     checkEingabeSpielzug(positionx, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
 
+     // Spielzug prüfen
+    checkSpielzug(spielfeld, positiony, positionx);
+
     spielfeld[positiony][positionx] = "XX";
 }
 

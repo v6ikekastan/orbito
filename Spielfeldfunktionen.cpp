@@ -174,17 +174,19 @@ bool checksieg(const string spielfeld[fg][fg]){
 }
 
 void spielzug1(string spielfeld[fg][fg], string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) {
-    int positiony;
-    int positionx;
+    int positiony, positionx;
 
     cout << spieler1 << " (XX) ist am Zug. Zeile [space] Spalte eingeben." << endl;
-    checkEingabeSpielzug(positiony, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran); // Funktion wird aufgerufen
-    checkEingabeSpielzug(positionx, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
 
-     // Spielzug prüfen
-    checkSpielzug(spielfeld, positiony, positionx);
+    do { // Wiederholen, bis der Spieler einen gültigen Zug tätigt
+        checkEingabeSpielzug(positiony, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
+        checkEingabeSpielzug(positionx, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
 
-    spielfeld[positiony][positionx] = "XX";
+    if (!checkSpielzug(spielfeld, positiony, positionx)) {} // Überprüfe, ob der Zug gültig ist
+         cout << "Spielzug nicht m" << oe << "glich, bitte erneut versuchen." << endl;
+    } while (!checkSpielzug(spielfeld, positiony, positionx)); // Solange der Zug ungültig ist, wiederhole die Eingabeaufforderung
+
+    spielfeld[positiony][positionx] = "XX";// Wenn der Spielzug gültig ist, aktualisiere das Spielfeld
 }
 
 void spielzug2(string spielfeld[fg][fg], string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) {
@@ -195,13 +197,20 @@ void spielzug2(string spielfeld[fg][fg], string &spieler1, string &spieler2, con
         int positiony;
         int positionx;
 
-        cout << spieler2 << " (==) ist am Zug. Zeile [space] Spalte eingeben." << endl;
-        checkEingabeSpielzug(positiony, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran); // Funktion wird aufgerufen
+       cout << spieler2 << " (==) ist am Zug. Zeile [space] Spalte eingeben." << endl;
+
+    do { // Wiederholen, bis der Spieler einen gültigen Zug tätigt
+        checkEingabeSpielzug(positiony, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
         checkEingabeSpielzug(positionx, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
+
+    if (!checkSpielzug(spielfeld, positiony, positionx)) {} // Überprüfe, ob der Zug gültig ist
+         cout << "Spielzug nicht m" << oe << "glich, bitte erneut versuchen." << endl;
+    } while (!checkSpielzug(spielfeld, positiony, positionx)); // Solange der Zug ungültig ist, wiederhole die Eingabeaufforderung
 
         spielfeld[positiony][positionx] = "==";
     }
 }
+
 
 void SpielzugComputer(string spielfeld[fg][fg]){
     int i;

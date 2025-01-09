@@ -8,6 +8,7 @@
 #include <windows.h>
 #include <limits>
 #include <cctype>
+#include <ctime>
 
 using namespace std;
 

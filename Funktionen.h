@@ -105,4 +105,10 @@ bool checkSpielzug(const string spielfeld[fg][fg], int positiony, int positionx)
 **/
 string namensmisch(string name); // (Flo)
 
+/**
+* @brief platziert einen Stein OO zufällig im Feld (Laura)
+* @param [out] zugCounter
+**/
+void extraStein(string spielfeld[fg][fg], int &zugCounter); //Laura (Flo Zeile
+
 #endif //FUNKTIONEN_H

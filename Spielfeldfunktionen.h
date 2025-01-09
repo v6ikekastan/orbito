@@ -33,5 +33,9 @@ void SpielzugComputer(string spielfeld[fg][fg]);      /** f�hrt (zuf�lligen)
 
 void SpielzugComputerL(string spielfeld[fg][fg]);      /** f�hrt (logischen) Spielzug von Computer aus **/
 
+void funny_spielfelderstellen(string spielfeld[fg][fg]);    /** gibt das Spielfeld ohne Zeilenumbruch aus (F)**/
+
+void steinVerschieben(string spielfeld[fg][fg], string spieler, int spielernummer); /** optionaler Spielzug, orthogonale
+                                                                                    Verschiebung des gegnerischen Steins(F)**/
 
 #endif //SPIELFELDFUNKTIONEN_H

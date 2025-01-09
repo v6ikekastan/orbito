@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <windows.h>
+#include <limits> //Zeile 51 - mac Variante
 
 using namespace std;
 
@@ -47,7 +48,7 @@ int main(){
         } else {
             cout << "Ung" << ue << "ltige Eingabe, bitte erneut versuchen.\n"; // Fehlermeldung bei invalider Eingabe
             cin.clear();
-            cin.sync();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
         }
     }
 

@@ -279,7 +279,6 @@ void spielzug1(string spielfeld[fg][fg], string &spieler1, string &spieler2, con
         checkEingabeSpielzug(positionx, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
 
     if (!checkSpielzug(spielfeld, positiony, positionx)) {} // Überprüfe, ob der Zug gültig ist
-         cout << "Spielzug nicht m" << oe << "glich, bitte erneut versuchen." << endl;
     } while (!checkSpielzug(spielfeld, positiony, positionx)); // Solange der Zug ungültig ist, wiederhole die Eingabeaufforderung
 
     spielfeld[positiony][positionx] = "XX";// Wenn der Spielzug gültig ist, aktualisiere das Spielfeld
@@ -295,7 +294,7 @@ void spielzug2(string spielfeld[fg][fg], string &spieler1, string &spieler2, con
         int positionx;
     
        
-    cout << spieler2 << " (OO) ist am Zug." << endl;
+    cout << spieler2 << " (==) ist am Zug." << endl;
     steinVerschieben(spielfeld, spieler2, 2);
     cout <<"Zeile [space] Spalte eingeben." << endl;
 
@@ -304,7 +303,6 @@ void spielzug2(string spielfeld[fg][fg], string &spieler1, string &spieler2, con
         checkEingabeSpielzug(positionx, spieler1, spieler2, spielfeldarray, checksiegStatus, winstreak, Spieler1istDran);
 
         if (!checkSpielzug(spielfeld, positiony, positionx)) {} // Überprüfe, ob der Zug gültig ist
-             cout << "Spielzug nicht m" << oe << "glich, bitte erneut versuchen." << endl;
     } while (!checkSpielzug(spielfeld, positiony, positionx)); // Solange der Zug ungültig ist, wiederhole die Eingabeaufforderung
 
         spielfeld[positiony][positionx] = "==";

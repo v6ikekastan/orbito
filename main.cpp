@@ -89,7 +89,7 @@ int main(){
         cin.clear();
         Spieler1istDran = true; // nachdem spieler2 seinen zug getätigt hat, ist spieler1 dran
 
-        if (checksieg(spielfeldarray) == true) {
+        if (checkTotalSieg(spielfeldarray, pattern1, pattern2) == true) {
             break;
         }
     }

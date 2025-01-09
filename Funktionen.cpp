@@ -159,7 +159,7 @@ void SpielstandSpeichern(const string &spieler1, const string &spieler2, const s
     Sleep(150);
     cout << " Winstreak wurde gespeichert!\n";
 
-    // bool Spieler1istDran speichernn
+    // bool Spieler1istDran speichern
     speichern << "Ist Spieler 1 dran?:\n" << (Spieler1istDran ? true : false) << endl; // Spieler1istDran wird als ja oder nein gespeichert
     Sleep(150);
     cout << " N" << ae << "chster Spieler wurde gespeichernt!\n\n";
@@ -260,7 +260,7 @@ void checkEingabeSpielzug(int &position, string& spieler1, string& spieler2, con
             if(cin.fail() || position < 0 || position > 3){ // prüft ob Benutzer einen Wert eingegeben hat, der nicht zum Datentyp von variable passt
                 cout << "Ung" << ue << "ltige Eingabe, bitte erneut versuchen." << endl;
                 cin.clear();   // löscht Fehlerinformation
-                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ungütige Eingabe
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignoriert ungültige Eingabe
             } else {
                 break; // gültige Eingabe, Schleife verlassen
             }

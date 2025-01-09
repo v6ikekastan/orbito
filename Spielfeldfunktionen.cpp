@@ -283,7 +283,7 @@ void spielzug1(string spielfeld[fg][fg], string &spieler1, string &spieler2, con
 void spielzug2(string spielfeld[fg][fg], string &spieler1, string &spieler2, const string spielfeldarray[fg][fg], bool checksiegStatus, int winstreak, bool Spieler1istDran) {
     if (spieler2 == "computer" || spieler2 == "Computer") {
         cout << spieler2 << " (==) ist am Zug." << endl;
-        SpielzugComputer(spielfeld);
+        SpielzugComputerL(spielfeld);
         } 
     else if (spieler2 != "computer" && spieler2 != "Computer") {
         int positiony;

@@ -328,7 +328,7 @@ void checkEingabeSpielzug(int &position, string& spieler1, string& spieler2, str
 bool checkSpielzug(string spielfeld[fg][fg], int positiony, int positionx){
 
     if (spielfeld[positiony][positionx] == "XX" || spielfeld[positiony][positionx] == "==" ){
-
+    cout << "Spielzug nicht m" << oe << "glich, bitte erneut versuchen." << endl;
        return false; //ungültiger Spielzug
     } else {
     return true; //gültiger Spielzug
